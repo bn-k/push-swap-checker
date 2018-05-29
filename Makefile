@@ -35,6 +35,8 @@ SRC =\
      get_chain.c \
      utils.c \
      swap.c \
+     push.c \
+     rotate.c \
      exec_operation.c \
 
 INC = $(addprefix -I,$(D_INC))

@@ -1,39 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/29 13:19:20 by abbenham          #+#    #+#             */
-/*   Updated: 2018/05/29 15:53:20 by abbenham         ###   ########.fr       */
+/*   Created: 2018/05/29 13:18:56 by abbenham          #+#    #+#             */
+/*   Updated: 2018/05/29 15:06:12 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void	swap_a(t_stack *stack)
+void	push_a(t_stack *stack)
 {
-	t_lst	*beg;
+	t_lst *tmp_b;
+	t_lst *tmp_a;
 
-	beg = stack->a->next;;
-	stack->a->next = stack->a->next->next;
-	beg->next = stack->a;
-	stack->a = beg;
+	if (stack->b)
+	{
+		tmp_b = stack->b->next;
+		tmp_a = stack->b;
+		tmp_a->next = stack->a;
+		stack->a = tmp_a;
+		stack->b = tmp_b;
+	}
 }
 
-void	swap_b(t_stack *stack)
+void	push_b(t_stack *stack)
 {
-	t_lst	*beg;
+	t_lst *tmp_b;
+	t_lst *tmp_a;
 
-	beg = stack->b->next;;
-	stack->b->next = stack->b->next->next;
-	beg->next = stack->b;
-	stack->b = beg;
-}
-
-void	swap_both(t_stack *stack)
-{
-	swap_a(stack);
-	swap_b(stack);
+	if (stack->a)
+	{
+		tmp_a = stack->a->next;
+		tmp_b = stack->a;
+		tmp_b->next = stack->b;
+		stack->b = tmp_b;
+		stack->a = tmp_a;
+	}
 }
