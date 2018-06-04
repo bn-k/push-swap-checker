@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,44 +12,45 @@
 
 #include "push_swap.h"
 
-void	rotate_a(t_stack *stack)
+void	reverse_rotate_a(t_stack *stack)
 {
 	t_lst	*tmp;
 	t_lst	*tracker;
-
 	if (stack->a)
-		if (stack->a->next)
+	{
+		tracker = stack->a;
+		while (tracker->next)
 		{
-			tracker = stack->a;
-			while (tracker->next)
-				tracker = tracker->next;
-			tmp = stack->a;
-			stack->a = stack->a->next;
-			tracker->next = tmp;
-			tracker->next->next = NULL;
-		} 
+			tmp = tracker;
+			tracker = tracker->next;
+		}
+		tracker->next = stack->a;
+		stack->a = tracker;
+		tmp->next = NULL;
+	}	
 } 
 
-void	rotate_b(t_stack *stack)
+void	reverse_rotate_b(t_stack *stack)
 {
 	t_lst	*tmp;
 	t_lst	*tracker;
 
 	if (stack->b)
-		if (stack->b->next)
+	{
+		tracker = stack->b;
+		while (tracker->next)
 		{
-			tracker = stack->b;
-			while (tracker->next)
-				tracker = tracker->next;
-			tmp = stack->b;
-			stack->b = stack->b->next;
-			tracker->next = tmp;
-			tracker->next->next = NULL;
-		} 
+			tmp = tracker;
+			tracker = tracker->next;
+		}
+		tracker->next = stack->b;
+		stack->b = tracker;
+		tmp->next = NULL;
+	}	
 } 
 
-void	rotate_both(t_stack *stack)
+void	reverse_rotate_both(t_stack *stack)
 {
-	rotate_a(stack);
-	rotate_b(stack);
+	reverse_rotate_a(stack);
+	reverse_rotate_b(stack);
 } 

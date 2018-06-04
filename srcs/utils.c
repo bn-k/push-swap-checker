@@ -1,9 +1,7 @@
-#include "checker.h"
+#include "push_swap.h"
 #include "list.h"
 
-
-
-void	print_parsed(t_lst *ope, t_stack *stack)
+void	print_stack(t_stack *stack)
 {
 	t_lst *a;
 	t_lst *b;
@@ -13,8 +11,7 @@ void	print_parsed(t_lst *ope, t_stack *stack)
 
 	a = stack->a;
 	b = stack->b;
-	printf("%s %s %s\n", "=", "Print Parsed", "=");
-	printf("%s %s %s\n", "======", "chain", "===");
+	ft_printf("=====================\n");
 	while (a || b)
 	{
 		i = 0;
@@ -37,7 +34,4 @@ void	print_parsed(t_lst *ope, t_stack *stack)
 		if (i == 10)
 			ft_printf(" %13i\n", nbb);
 	}
-	printf("%s %s %s\n", "==", "operation", "===");
-	ft_lstprintstr(ope);
-	printf("%s %s %s\n", "======", "end", "=====");
 }

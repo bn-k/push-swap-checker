@@ -1,4 +1,4 @@
-#include "checker.h"
+#include "push_swap.h"
 #include "get_next_line.h"
 
 t_lst	*operation_parser(void)

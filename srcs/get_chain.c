@@ -1,4 +1,4 @@
-#include "checker.h"
+#include "push_swap.h"
 
 static t_lst	*chain_parser_two_arg(int ac, char **av)
 {
@@ -47,4 +47,3 @@ t_lst	*chain_parser(int ac, char **av)
 	else
 		return(chain_parser_infinite_arg(ac, av));
 }
-

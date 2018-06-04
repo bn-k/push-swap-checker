@@ -1,17 +1,20 @@
 #include "push_swap.h"
 #include "get_next_line.h"
 
+void	push_swap(t_stack *stack)
+{
+	get_info(stack);
+	sort_easy(stack);
+}
+
 int	main(int ac, char **av)
 {
 	t_stack	stack;
 
 	ft_bzero(&stack, sizeof(stack));
 	if (!(stack.a = chain_parser(ac, av)))
-	{
-		ft_printf("Wrong number of argument\n");
 		return(0);
-	}
-	print_stack(&stack);
-	stack.ope = operation_parser();
-	return(exec_operation_checker(&stack));
+	push_swap(&stack);
+	free(&stack);
+	return(0);
 }

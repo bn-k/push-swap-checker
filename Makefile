@@ -14,7 +14,8 @@ LOG_WHITE		= \033[1;37m
 .SILENT:
 
 # comp
-NAME = checker
+CHECKER = checker
+PS = push_swap
 CC = clang
 LIBCC = make -C ../libft
 CCFLAGS = -Wall -Wextra -Werror #-fsanitize=adress -g
@@ -29,7 +30,7 @@ D_LIB = ../libft
 F_LIB = -lft 
 
 # sources
-SRC =\
+CHECKER_SRC =\
      checker.c \
      get_ope.c \
      get_chain.c \
@@ -37,25 +38,45 @@ SRC =\
      swap.c \
      push.c \
      rotate.c \
-     exec_operation.c \
+     reverse_rotate.c \
+     exec_operation_checker.c \
+
+PS_SRC=\
+     push_swap.c \
+     get_chain.c \
+     utils.c \
+     swap.c \
+     push.c \
+     rotate.c \
+     reverse_rotate.c \
+     shift.c \
+     sort_easy.c \
+     sorting_utils.c \
+     sorting_check.c \
+     exec_operation_push_swap.c \
 
 INC = $(addprefix -I,$(D_INC))
 LIB_INC = $(addprefix -I,$(addprefix $(D_LIB)/,$(D_INC)))
-SRCS = $(addprefix $(D_SRC)/,$(SRC))
+CHECKER_SRCS = $(addprefix $(D_SRC)/,$(CHECKER_SRC))
+PS_SRCS= $(addprefix $(D_SRC)/,$(PS_SRC))
 
 # special chars
-all: libft $(NAME)
+all: libft $(CHECKER) $(PS)
 
 libft: 
 	$(MAKE) -C ../libft
 
-$(NAME): comp
+$(CHECKER): comp_checker
+$(PS): comp_ps
 
-comp: 
-	$(CC) -o $(NAME) $(SRCS) $(INC) $(LIB_INC) -L$(D_LIB) $(F_LIB)
+comp_checker: 
+	$(CC) -o $(CHECKER) $(CHECKER_SRCS) $(INC) $(LIB_INC) -L$(D_LIB) $(F_LIB)
+
+comp_ps: 
+	$(CC) -o $(PS) $(PS_SRCS) $(INC) $(LIB_INC) -L$(D_LIB) $(F_LIB)
 
 clean:
-	rm -Rf $(NAME)
+	rm -Rf $(CHECKER) $(PS)
 
 fclean: clean
 	rm -f $(NAME)
