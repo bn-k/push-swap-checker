@@ -13,6 +13,9 @@ void	init_b(t_stack *stack)
 
 void	shift(t_stack *stack)
 {
+	t_lst *lst;
+
+	lst = stack->a;
 	while (stack->a)
 	{
 		if (deref(stack->a->data))

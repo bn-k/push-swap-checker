@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/04 16:15:15 by abbenham          #+#    #+#             */
+/*   Updated: 2018/06/04 17:48:31 by abbenham         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # include "libft.h"
 # define PUSH_SWAP_H 
@@ -11,47 +23,51 @@
 # define KCYN  "\x1B[36m"
 # define KWHT  "\x1B[37m"
 # define HALF_WAY_A (stack->len_a / 2)
+# define ABS(x) (x < 0 ? -x : x)
 
 typedef	struct	s_stack
 {
-	t_lst	*a;
-	t_lst	*b;
-	t_lst	*ope;
-	int	len_a;
-	int	len_b;
-	int	min;
-	int	min_i;
-	int	max;
-	int	max_i;
-	int	middle;
-}		t_stack;
+	t_lst		*a;
+	t_lst		*b;
+	t_lst		*ope;
+	int			len_a;
+	int			len_b;
+	int			min;
+	int			min_i;
+	int			max;
+	int			max_i;
+	int			pivot;
+}				t_stack;
 
 typedef struct	s_ope
 {
-	char	*code_ope;
-	void	(*func_ope)(t_stack*);
-	char	*name;
-}		t_ope;
+	char		*code_ope;
+	void		(*func_ope)(t_stack*);
+	char		*name;
+}				t_ope;
 
 typedef struct	s_next
 {
-	int	min;
-	int	min_i;
-}		t_next;
+	int			min;
+	int			min_i;
+}				t_next;
 
 t_lst	*operation_parser(void);
 t_lst	*chain_parser(int ac, char **av);
 
-void	print_stack(t_stack *stack);
+void	print_stack2(t_stack *stack);
 
-int	checker(t_stack *stack);
-int	exec_operation_checker(t_stack *stack);
+int		checker(t_stack *stack);
+int		exec_operation_checker(t_stack *stack);
 
-void	shift(t_stack *stack);
 void	exec_ope(char *code_ope, t_stack *stack);
 
 void	sort_easy(t_stack *stack);
-int	stack_sorted(t_stack *stack);
+
+void	sort_quick(t_stack *stack);
+void	shift(t_stack *stack);
+
+int		stack_sorted(t_stack *stack);
 
 void	init_b(t_stack *stack);
 void	get_info(t_stack *stack);

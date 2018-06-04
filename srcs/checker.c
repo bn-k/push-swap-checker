@@ -11,7 +11,8 @@ int	main(int ac, char **av)
 		ft_printf("Wrong number of argument\n");
 		return(0);
 	}
-	print_stack(&stack);
+	print_stack2(&stack);
+	ft_putchar('\n');
 	stack.ope = operation_parser();
 	return(exec_operation_checker(&stack));
 }

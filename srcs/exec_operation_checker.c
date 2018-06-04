@@ -32,9 +32,9 @@ static int		browse_function(t_stack *stack, int step)
 		if (!ft_strcmp(g_ope[i].code_ope, (char *)stack->ope->data))
 		{
 			g_ope[i].func_ope(stack);
-			ft_printf("=====================\n");
-			ft_printf("%sAction: %s%s%s step: %d\n", KGRN, KRED, g_ope[i].name, KNRM, step);
-			//print_stack(stack);
+			ft_printf("%s\n", g_ope[i].code_ope);
+			print_stack2(stack);
+			ft_printf("\n%d\n", step);
 			i = END;
 		}
 		else if (i == END - 1)

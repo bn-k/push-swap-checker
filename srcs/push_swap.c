@@ -15,6 +15,5 @@ int	main(int ac, char **av)
 	if (!(stack.a = chain_parser(ac, av)))
 		return(0);
 	push_swap(&stack);
-	free(&stack);
 	return(0);
 }

@@ -27,6 +27,7 @@ void	get_info(t_stack *stack)
 	}
 	stack->min = min;
 	stack->max = max;
+	stack->pivot = max - (max - min) / 2;
 }
 
 void	get_next_min(t_stack *stack, t_next *next)
