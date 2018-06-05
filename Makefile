@@ -21,7 +21,6 @@ CC = clang
 LIBCC = make -C ../libft
 CCFLAGS = -Wall -Wextra -Werror #-fsanitize=adress -g
 
-
 # dir
 D_SRC = srcs
 D_INC = includes
