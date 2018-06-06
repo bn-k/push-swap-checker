@@ -47,26 +47,26 @@ func (cb *CityBuildingSystem) New(w *ecs.World) {
 func (cb *CityBuildingSystem) Update(dt float32) {
 	if engo.Input.Button("AddCity").JustPressed() {
 		fmt.Println("F pressed")
-	}
-	city := City{BasicEntity: ecs.NewBasic()}
+		city := City{BasicEntity: ecs.NewBasic()}
 
-	city.SpaceComponent = common.SpaceComponent{
-		Position:engo.Point{cb.mouseTracker.MouseComponent.MouseX, cb.mouseTracker.MouseComponent.MouseY},
-		Width: 30,
-		Height: 60,
-	}
-	texture, err := common.LoadedSprite(cityTextureLocation)
-	if err != nil {
-		panic(err)
-	}
-	city.RenderComponent = common.RenderComponent{
-		Drawable: texture,
-		Scale: engo.Point{0.5, 0.5},
-	}
-	for _, system := range cb.world.Systems() {
-		switch sys := system.(type) {
-		case *common.RenderSystem:
-			sys.Add(&city.BasicEntity, &city.RenderComponent, &city.SpaceComponent)
+		city.SpaceComponent = common.SpaceComponent{
+			Position:engo.Point{cb.mouseTracker.MouseComponent.MouseX, cb.mouseTracker.MouseComponent.MouseY},
+			Width: 30,
+			Height: 60,
+		}
+		texture, err := common.LoadedSprite(cityTextureLocation)
+		if err != nil {
+			panic(err)
+		}
+		city.RenderComponent = common.RenderComponent{
+			Drawable: texture,
+			Scale: engo.Point{0.5, 0.5},
+		}
+		for _, system := range cb.world.Systems() {
+			switch sys := system.(type) {
+			case *common.RenderSystem:
+				sys.Add(&city.BasicEntity, &city.RenderComponent, &city.SpaceComponent)
+			}
 		}
 	}
 }

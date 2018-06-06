@@ -1,15 +1,13 @@
 package main
 
 import (
-	"fmt"
-	"bufio"
-	"os"
 	"log"
 	"image/color"
 	"engo.io/engo"
 	"engo.io/ecs"
 	"engo.io/engo/common"
 	"./systems"
+	"./number"
 )
 
 type myScene struct {}
@@ -22,20 +20,21 @@ func (*myScene) Preload() {
 
 func (*myScene) Type() string { return "Viewer" }
 
-func (*myScene) Setup(u engo.Updater) {
-	world, _ := u.(*ecs.World)
-	world.AddSystem(&common.RenderSystem{})
-	world.AddSystem(&common.MouseSystem{})
-	//world.AddSystem(&systems.CityBuildingSystem{})
+func (*myScene) Setup(up engo.Updater) {
+	w, _ := up.(*ecs.World)
+	w.AddSystem(&common.RenderSystem{})
+	w.AddSystem(&common.MouseSystem{})
+	w.AddSystem(&systems.CityBuildingSystem{})
+	w.AddSystem(&number.LineBuilding{})
+	number.Test()
 	common.SetBackground(color.White)
 	engo.Input.RegisterButton("AddCity", engo.KeyF)
-	systems.Test()
 }
 
 func main() {
-	entry := bufio.NewReader(os.Stdin)
-	str ,_ :=  entry.ReadString('\n')
-	fmt.Printf("%s", str)
+	//entry := bufio.NewReader(os.Stdin)
+	//str ,_ :=  entry.ReadString('\n')
+	//fmt.Printf("%s", str)
 	log.Println("Jusqu'ici tout va bien")
 	opts := engo.RunOptions{
 		Title: "View Stack",
