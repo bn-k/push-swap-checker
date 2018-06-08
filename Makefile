@@ -23,6 +23,7 @@ CCFLAGS = -Wall -Wextra -Werror #-fsanitize=adress -g
 
 # dir
 D_SRC = srcs
+GO_SRC = go_srcs
 D_INC = includes
 D_LIB = ../libft
 
@@ -63,7 +64,7 @@ INC = $(addprefix -I,$(D_INC))
 LIB_INC = $(addprefix -I,$(addprefix $(D_LIB)/,$(D_INC)))
 CHECKER_SRCS = $(addprefix $(D_SRC)/,$(CHECKER_SRC))
 PS_SRCS= $(addprefix $(D_SRC)/,$(PS_SRC))
-VIEW_SRCS= $(addprefix $(D_SRC)/,$(VIEW_SRC))
+VIEW_SRCS= $(addprefix $(GO_SRC)/,$(VIEW_SRC))
 
 # special chars
 all: libft $(CHECKER) $(PS) $(VIEW_STACK)

@@ -5,4 +5,4 @@ done) | tr '\n' ' ' > range;
 ARG=$(cat range);
 
 make
-./push_swap $ARG | ./checker $ARG 
+./push_swap $ARG | ./checker $ARG | ./view_stack $3

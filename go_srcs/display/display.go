@@ -1,4 +1,4 @@
-package main
+package display
 
 import (
 	"log"
@@ -6,15 +6,24 @@ import (
 	"engo.io/engo"
 	"engo.io/ecs"
 	"engo.io/engo/common"
-	"./systems"
-	"./number"
+	"os"
+	"path/filepath"
+	//"../systems"
+	"../number"
+	//"bufio"
+	"fmt"
 )
 
 type myScene struct {}
 
 
 func (*myScene) Preload() {
-	engo.Files.SetRoot("/Users/abbenham/home/push_swap/srcs/")
+	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Printf("Root set to: %s", dir + "/")
+	engo.Files.SetRoot(dir + "/")
 	engo.Files.Load("assets/textures/city.png")
 }
 
@@ -24,18 +33,15 @@ func (*myScene) Setup(up engo.Updater) {
 	w, _ := up.(*ecs.World)
 	w.AddSystem(&common.RenderSystem{})
 	w.AddSystem(&common.MouseSystem{})
-	w.AddSystem(&systems.CityBuildingSystem{})
-	w.AddSystem(&number.LineBuilding{})
-	number.Test()
 	common.SetBackground(color.White)
-	engo.Input.RegisterButton("AddCity", engo.KeyF)
+	log.Println("Jusqu'ici tout va bien")
+	//w.AddSystem(&systems.CityBuildingSystem{})
+	w.AddSystem(&number.LineBuilding{})
+	//engo.Input.RegisterButton("AddCity", engo.KeyF)
 }
 
-func main() {
-	//entry := bufio.NewReader(os.Stdin)
-	//str ,_ :=  entry.ReadString('\n')
-	//fmt.Printf("%s", str)
-	log.Println("Jusqu'ici tout va bien")
+func Display() {
+	fmt.Println("========Function display========")
 	opts := engo.RunOptions{
 		Title: "View Stack",
 		Width:  1400,
