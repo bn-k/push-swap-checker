@@ -21,8 +21,8 @@ void	print_lst(t_lst *lst)
 void	print_stack2(t_stack *stack)
 {
 	print_lst(stack->a);
-	ft_putchar('\n');
-	print_lst(stack->b);
+//	ft_putchar('\n');
+//	print_lst(stack->b);
 }
 
 void	print_stack(t_stack *stack)

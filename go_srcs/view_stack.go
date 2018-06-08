@@ -9,6 +9,8 @@ import (
 	"flag"
 	"./parser"
 	"./display"
+	"container/list"
+
 )
 
 type flags struct {
@@ -17,12 +19,16 @@ type flags struct {
 
 func main() {
 	var f flags
+	var stack parser.Stack
+
 	f.output = flag.Bool("v", false, "Mode graphique")
 	flag.Parse()
-	parser.Parser()
+	stack.Parser()
 	if *f.output {
 		display.Display()
 	} else {
 		fmt.Println("========Mode CLI========")
 	}
+	l := list.New
+	l.PushBack("bird")
 }

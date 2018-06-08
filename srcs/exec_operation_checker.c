@@ -33,8 +33,8 @@ static int		browse_function(t_stack *stack, int step)
 		{
 			g_ope[i].func_ope(stack);
 			ft_printf("%s\n", g_ope[i].code_ope);
-			print_stack2(stack);
-			ft_printf("\n%d\n", step);
+			//print_stack2(stack);
+			//ft_printf("\n%d\n", step);
 			i = END;
 		}
 		else if (i == END - 1)
