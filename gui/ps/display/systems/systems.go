@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-const cityTextureLocation = "assets/textures/city.png"
+const cityTextureLocation = "gui/assets/textures/city.png"
 
 type CityMouseTracker struct {
 	ecs.BasicEntity

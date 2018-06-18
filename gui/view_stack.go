@@ -3,8 +3,7 @@ package main
 import (
 	"fmt"
 	"flag"
-	"./push_swap"
-	"./push_swap/parser"
+	"./ps"
 )
 
 type flags struct {
@@ -13,7 +12,6 @@ type flags struct {
 
 func main() {
 	var f flags
-	var ps push_swap
 
 	fmt.Println("======== view_stack/main ========")
 	f.visu = flag.Bool("v", false, "Graphique Mode")

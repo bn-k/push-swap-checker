@@ -23,7 +23,7 @@ CCFLAGS = -Wall -Wextra -Werror #-fsanitize=adress -g
 
 # dir
 D_SRC = srcs
-GO_SRC = go_srcs
+GO_SRC = gui
 D_INC = includes
 D_LIB = ../libft
 
