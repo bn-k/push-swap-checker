@@ -2,8 +2,6 @@ package ps
 
 import (
 	"fmt"
-	"./parser"
-	"./display"
 )
 
 type Stack struct {
@@ -23,44 +21,44 @@ type opeStruct struct {
 var opeTab =  []opeStruct {
 	{"sa", SwapA},
 	{"sb", SwapB},
+	{"ss", SwapAll},
 	{"pa", PushA},
 	{"pb", PushB},
 	{"ra", RotateA},
 	{"rb", RotateB},
+	{"rr", RotateAll},
 	{"rra", ReverseRotateA},
 	{"rrb", ReverseRotateB},
-	{"OK", Done},
+	{"rrr", ReverseRotateAll},
 	{"KO", Done},
+	{"OK", Done},
 }
 
 func browse (stack *Stack) {
-	for i := 0; i < 11 ; i++ {
+	for i := 0; i < 13 ; i++ {
 		if opeTab[i].code == stack.Ope[0] {
 			opeTab[i].function(stack)
-			i = 11
+			i = 13
 			stack.Ope = append(stack.Ope[:0], stack.Ope[1:]...)
 		}
 	}
 }
 
-func Run(flag *bool) {
-	if (*flag) {
-		fmt.Println("Mode graphique")
-	} else {
-		fmt.Println("Mode CLI")
-	}
-	operate()
+func Test () {
+	fmt.Println("testttt")
 }
 
-func operate () {
+func Operate (A, B []int, Ope []string, Done int)  ([]int, []int, []string, int){
 	var stack Stack
-	stack.A, stack.Ope = parser.Parser()
-	display.Display()
-	for i:= 0; 0 == stack.Done ; i++ {
-		fmt.Println("==============",stack.Ope[0],"==============")
-		browse(&stack)
-		fmt.Println(stack)
-	}
+	stack.A, stack.B, stack.Ope, stack.Done = A, B, Ope, Done
+	browse(&stack)
+	return stack.A, stack.B, stack.Ope, stack.Done
+}
+
+func Operate2 (A, B []int, Ope []string, Done int){
+	var stack Stack
+	stack.A, stack.B, stack.Ope, stack.Done = A, B, Ope, Done
+	browse(&stack)
 }
 
 func PushB (s *Stack) {
@@ -81,6 +79,11 @@ func SwapB  (s *Stack){
 	s.B[0], s.B[1] = s.B[1], s.B[0]
 }
 
+func SwapAll (s *Stack){
+	SwapA(s)
+	SwapB(s)
+}
+
 func RotateA  (s *Stack){
 	s.A = append(s.A[1:], s.A[0])
 }
@@ -89,12 +92,22 @@ func RotateB  (s *Stack){
 	s.B = append(s.B[1:], s.B[0])
 }
 
+func RotateAll (s *Stack){
+	RotateB(s)
+	RotateA(s)
+}
+
 func ReverseRotateB  (s *Stack){
 	s.B = append([]int{s.B[len(s.B) - 1]},s.B[:len(s.B) - 1]...)
 }
 
 func ReverseRotateA  (s *Stack){
 	s.A = append([]int{s.A[len(s.A) - 1]},s.A[:len(s.A) - 1]...)
+}
+
+func ReverseRotateAll (s *Stack){
+	ReverseRotateB(s)
+	ReverseRotateA(s)
 }
 
 func Done (s *Stack) {

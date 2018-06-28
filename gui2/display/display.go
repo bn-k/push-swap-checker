@@ -10,7 +10,6 @@ import (
 	"engo.io/engo/common"
 	"path/filepath"
 	"./number"
-	"./systems"
 )
 
 type myScene struct {}
@@ -32,18 +31,15 @@ func (*myScene) Setup(up engo.Updater) {
 	w.AddSystem(&common.MouseSystem{})
 	common.SetBackground(color.White)
 	log.Println("Jusqu'ici tout va bien")
-	w.AddSystem(&systems.CityBuildingSystem{})
 	w.AddSystem(&number.LineBuilding{})
-	engo.Input.RegisterButton("AddCity", engo.KeyF)
-	//number.Add(w)
 }
 
 func Display() {
 	fmt.Println("========Function display========")
 	opts := engo.RunOptions{
 		Title: "View Stack",
-		Width:  2000,
-		Height: 1000,
+		Width:  number.SCREEN_X,
+		Height: number.SCREEN_Y,
 	}
 	engo.Run(opts, &myScene{})
 }

@@ -14,7 +14,7 @@ type flags struct {
 }
 
 func cli () {
-	var s number.DoubleStackSystem
+	var s number.LineBuilding
 	s.A, s.Ope = parser.Parser()
 	for s.Done == 0 {
 		fmt.Println(s)
