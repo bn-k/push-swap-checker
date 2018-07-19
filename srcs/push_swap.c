@@ -1,19 +1,97 @@
-#include "push_swap.h"
-#include "get_next_line.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/29 15:26:57 by abbenham          #+#    #+#             */
+/*   Updated: 2018/05/29 16:02:10 by abbenham         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	push_swap(t_stack *stack)
+#include "push_swap.h"
+
+int	sorted(int *arr, int len)
 {
-	get_info(stack);
-	sort_easy(stack);
+	int	i;
+
+	i = 0;
+	while (i < len)
+	{
+		if (arr[i] > arr[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
-int	main(int ac, char **av)
+void	basic_quick_sort(int *arr, int low, int high)
 {
-	t_stack	stack;
+	int	pivot;
+	int	i;
+	int	j;
+	int	temp;
+	if(low < high) 
+	{
+		pivot = low; // select a pivot element
+		i = low;
+		j = high;
+		while(i < j) 
+		{
+			while(arr[i] <= arr[pivot] && i <= high)
+				i++;
+			while(arr[j] > arr[pivot] && j >= low)
+				j--;
+			if(i < j) {
+				temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+			}
+		}
+		// when i >= j it means the j-th position is the correct position
+		// of the pivot element, hence swap the pivot element with the
+		// element in the j-th position
+		temp = arr[j];
+		arr[j] = arr[pivot];
+		arr[pivot] = temp;
+		// Repeat quicksort for the two sub-arrays, one to the left of j
+		// and one to the right of j
+		basic_quick_sort(arr, low, j-1);
+		basic_quick_sort(arr, j+1, high);
+	}
+}
 
-	ft_bzero(&stack, sizeof(stack));
-	if (!(stack.a = chain_parser(ac, av)))
-		return(0);
-	push_swap(&stack);
-	return(0);
+int	*pre_sort(t_heap *heap, int *tab, int len)
+{
+	int	i;
+	int	*clean;
+
+	i = 0;
+	clean = (int*)malloc(sizeof(int) * len);
+	while (i < len)
+	{
+		clean[i] = tab[i];
+		i++;
+	}
+	basic_quick_sort(clean, 0, len-1);
+	return (clean);
+}
+
+void	push_swap(t_heap *heap)
+{
+	insert_sort(heap, &heap->a, &heap->b);
+}
+
+int main(int ac, char **av)
+{
+	t_heap *heap;
+	if (!(heap = parser(ac, av)))
+	{
+		ft_printf("usage: ./push_swap [arg]\n");
+		return (0);
+	}
+	init_math(heap);
+	push_swap(heap);
+	return (0);
 }

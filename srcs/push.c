@@ -1,45 +1,25 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/29 13:18:56 by abbenham          #+#    #+#             */
-/*   Updated: 2018/06/04 15:08:55 by abbenham         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "push_swap.h"
 
-void	push_a(t_stack *stack)
+void	push_b(t_heap *heap)
 {
-	t_lst *tmp_b;
-	t_lst *tmp_a;
-
-	if (stack->b)
+	if (heap->a.len > 0)
 	{
-		tmp_b = stack->b->next;
-		tmp_a = stack->b;
-		tmp_a->next = stack->a;
-		stack->a = tmp_a;
-		stack->b = tmp_b;
+		to_down(&heap->b.pile, heap->b.len);
+		heap->b.len++;
+		heap->b.pile[0] = heap->a.pile[0];
+		to_up(&heap->a.pile, heap->a.len);
+		heap->a.len--;
 	}
-	stack->len_a--;
 }
 
-void	push_b(t_stack *stack)
+void	push_a(t_heap *heap)
 {
-	t_lst *tmp_b;
-	t_lst *tmp_a;
-
-	if (stack->a)
+	if (heap->b.len > 0)
 	{
-		tmp_a = stack->a->next;
-		tmp_b = stack->a;
-		tmp_b->next = stack->b;
-		stack->b = tmp_b;
-		stack->a = tmp_a;
+		to_down(&heap->a.pile, heap->a.len);
+		heap->a.len++;
+		heap->a.pile[0] = heap->b.pile[0];
+		to_up(&heap->b.pile, heap->b.len);
+		heap->b.len--;
 	}
-	stack->len_b--;
 }

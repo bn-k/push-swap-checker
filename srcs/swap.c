@@ -1,47 +1,32 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/29 13:19:20 by abbenham          #+#    #+#             */
-/*   Updated: 2018/06/04 17:42:16 by abbenham         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "push_swap.h"
 
-void	swap_a(t_stack *stack)
+void	swap_a(t_heap *heap)
 {
-	t_lst	*beg;
+	int tmp;
 
-	if (stack->a)
-		if (stack->a->next)
-		{
-			beg = stack->a->next;;
-			stack->a->next = stack->a->next->next;
-			beg->next = stack->a;
-			stack->a = beg;
-		}
+	if (heap->a.len > 1)
+	{
+		tmp = heap->a.pile[0];
+		heap->a.pile[0] = heap->a.pile[1];
+		heap->a.pile[1] = tmp;
+	}
 }
 
-void	swap_b(t_stack *stack)
+void	swap_b(t_heap *heap)
 {
-	t_lst	*beg;
+	int tmp;
 
-	if (stack->b)
-		if (stack->b->next)
-		{
-			beg = stack->b->next;;
-			stack->b->next = stack->b->next->next;
-			beg->next = stack->b;
-			stack->b = beg;
-		}
+	if (heap->b.len > 1)
+	{
+		tmp = heap->b.pile[0];
+		heap->b.pile[0] = heap->b.pile[1];
+		heap->b.pile[1] = tmp;
+	}
 }
 
-void	swap_both(t_stack *stack)
+void	swap_both(t_heap *heap)
 {
-	swap_a(stack);
-	swap_b(stack);
+	swap_a(heap);
+	swap_b(heap);
 }
+

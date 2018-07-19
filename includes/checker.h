@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
+#ifndef CHECKER_H
+# define CHECKER_H 
 # include "libft.h"
-# define PUSH_SWAP_H 
 # define END 11
 # define KNRM  "\x1B[0m"
 # define KRED  "\x1B[31m"
@@ -22,89 +22,61 @@
 # define KMAG  "\x1B[35m"
 # define KCYN  "\x1B[36m"
 # define KWHT  "\x1B[37m"
+# define HALF_WAY_A (stack->len_a / 2)
 # define ABS(x) (x < 0 ? -x : x)
 
-typedef struct	s_next
+typedef	struct	s_stack
 {
-	int	nb;
-	int	index;
-}		t_next;
-
-typedef struct	s_quick
-{
-	int	*i;
-	int	len;
-	int	pivot;
-	int	last;
-	int	new;
-}		t_quick;
-
-typedef struct	s_pile
-{
-	char			id;
-	int			*pile;
-	int			len;
-	struct s_pile		*other;
-	char			*push;
-	char			*rotate;
-	char			*reverse;
-	int			(*sort)(int, int);
-	t_quick			quick;
-}		t_pile;
-
-typedef struct	s_heap
-{
-	t_pile	a;
-	t_pile	b;
-	int	len;
-	int	turn;
-	int	sorted;
-	int	*clean;
-}		t_heap;
+	t_lst		*a;
+	t_lst		*b;
+	t_lst		*ope;
+	int			len_a;
+	int			len_b;
+	int			min;
+	int			min_i;
+	int			max;
+	int			max_i;
+	int			first;
+	int			last;
+	int			pivot;
+}				t_stack;
 
 typedef struct	s_ope
 {
 	char		*code_ope;
-	void		(*func_ope)(t_heap*);
+	void		(*func_ope)(t_stack*);
 	char		*name;
 }				t_ope;
 
-void	quick_sort(t_heap *heap);
+t_lst	*operation_parser(void);
+t_lst	*chain_parser(int ac, char **av);
 
-void	insert_sort(t_heap *heap, t_pile *from, t_pile *to);
+void	print_stack2(t_stack *stack);
 
-t_heap	*parser(int ac, char **av);
-void	print_heap(t_heap *heap);
-void	init_math(t_heap *heap);
+int		checker(t_stack *stack);
+int		exec_operation_checker(t_stack *stack);
 
-int	is_sorted(t_heap *heap);
-int	increase(int x, int y);
-int	decrease(int x, int y);
+void	exec_ope(char *code_ope, t_stack *stack);
 
-void	test(t_heap *heap);
-void	to_up(int **heap, int len);
-void	to_down(int **heap, int len);
+int		stack_sorted(t_stack *stack);
 
-void	swap_a(t_heap *heap);
-void	swap_b(t_heap *heap);
-void	swap_both(t_heap *heap);
+void	init_b(t_stack *stack);
+void	get_data(t_stack *stack);
 
-void	push_a(t_heap *heap);
-void	push_b(t_heap *heap);
+void	swap_a(t_stack *stack);
+void	swap_b(t_stack *stack);
+void	swap_both(t_stack *stack);
 
-void	rotate_a(t_heap *heap);
-void	rotate_b(t_heap *heap);
-void	rotate_both(t_heap *heap);
+void	push_a(t_stack *stack);
+void	push_b(t_stack *stack);
 
-void	reverse_rotate_a(t_heap *heap);
-void	reverse_rotate_b(t_heap *heap);
-void	reverse_rotate_both(t_heap *heap);
+void	rotate_a(t_stack *stack);
+void	rotate_b(t_stack *stack);
+void	rotate_both(t_stack *stack);
 
-void	exec_ope(char *code_ope, t_heap *heap);
-void	basic_quick_sort(int *arr, int low, int high);
-int	*pre_sort(t_heap *heap, int *tab, int len);
-	
-
+void	reverse_rotate_a(t_stack *stack);
+void	reverse_rotate_b(t_stack *stack);
+void	reverse_rotate_both(t_stack *stack);
 
 static const t_ope g_ope[] =
 {

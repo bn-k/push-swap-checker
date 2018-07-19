@@ -33,32 +33,30 @@ F_LIB = -lft
 # sources
 CHECKER_SRC =\
      checker.c \
-     get_ope.c \
-     get_chain.c \
-     print_stack.c \
-     swap.c \
+     parser.c \
      push.c \
+     swap.c \
      rotate.c \
-     reverse_rotate.c \
-     exec_operation_checker.c \
+     reverse.c \
+     is_sorted.c \
+     ope_utils.c \
+     utils.c \
 
 PS_SRC=\
      push_swap.c \
-     get_chain.c \
-     print_stack.c \
-     swap.c \
+     ope_utils.c \
+     is_sorted.c \
+     utils.c \
+     parser.c \
      push.c \
+     swap.c \
      rotate.c \
-     reverse_rotate.c \
-     shift.c \
-     sort_easy.c \
-     sort_quick.c \
-     sorting_utils.c \
-     sorting_check.c \
-     exec_operation_push_swap.c \
+     reverse.c \
+     quick_sort.c \
+     insert_sort.c \
 
 VIEW_SRC=\
-	 view_stack.go \
+ 	view_stack.go \
 
 INC = $(addprefix -I,$(D_INC))
 LIB_INC = $(addprefix -I,$(addprefix $(D_LIB)/,$(D_INC)))

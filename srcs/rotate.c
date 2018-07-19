@@ -1,55 +1,32 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/29 15:26:57 by abbenham          #+#    #+#             */
-/*   Updated: 2018/05/29 16:02:10 by abbenham         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "push_swap.h"
 
-void	rotate_a(t_stack *stack)
+
+void	rotate_a(t_heap *heap)
 {
-	t_lst	*tmp;
-	t_lst	*tracker;
+	int	first;
 
-	if (stack->a)
-		if (stack->a->next)
-		{
-			tracker = stack->a;
-			while (tracker->next)
-				tracker = tracker->next;
-			tmp = stack->a;
-			stack->a = stack->a->next;
-			tracker->next = tmp;
-			tracker->next->next = NULL;
-		} 
-} 
+	if (heap->a.len > 1)
+	{
+		first = heap->a.pile[0];
+		to_up(&heap->a.pile, heap->a.len);
+		heap->a.pile[heap->a.len - 1] = first;
+	}
+}
 
-void	rotate_b(t_stack *stack)
+void	rotate_b(t_heap *heap)
 {
-	t_lst	*tmp;
-	t_lst	*tracker;
+	int	first;
 
-	if (stack->b)
-		if (stack->b->next)
-		{
-			tracker = stack->b;
-			while (tracker->next)
-				tracker = tracker->next;
-			tmp = stack->b;
-			stack->b = stack->b->next;
-			tracker->next = tmp;
-			tracker->next->next = NULL;
-		} 
-} 
+	if (heap->b.len > 1)
+	{
+		first = heap->b.pile[0];
+		to_up(&heap->b.pile, heap->b.len);
+		heap->b.pile[heap->b.len - 1] = first;
+	}
+}
 
-void	rotate_both(t_stack *stack)
+void	rotate_both(t_heap *heap)
 {
-	rotate_a(stack);
-	rotate_b(stack);
-} 
+	rotate_a(heap);
+	rotate_b(heap);
+}

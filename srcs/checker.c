@@ -1,18 +1,78 @@
 #include "push_swap.h"
 #include "get_next_line.h"
 
-int	main(int ac, char **av)
+char	**programme_read(void)
 {
-	t_stack	stack;
+	char	*ope;
+	char	**prog;
+	int	i;
 
-	ft_bzero(&stack, sizeof(stack));
-	if (!(stack.a = chain_parser(ac, av)))
+	prog = NULL;
+	i = 0;
+	while (get_next_line(0, &ope))
+		prog = tabcat(prog, ope, ++i);
+	prog[i] = NULL;
+	return (prog);
+}
+
+static int	browse_function(char *ope, int step, t_heap *heap)
+{
+	int	i;
+
+	i = 0;
+	while (i < END)
 	{
-		ft_printf("Wrong number of argument\n");
-		return(0);
+		if (!ft_strcmp(g_ope[i].code_ope, ope))
+		{
+			g_ope[i].func_ope(heap);
+			ft_printf("%s\n",ope);
+			i = END;
+		}
+		else if (i == END - 1)
+		{
+			ft_printf("Wrong operation: %s\n", ope);
+			return(0);
+		}
+		i++;
 	}
-	print_stack2(&stack);
-	ft_putchar('\n');
-	stack.ope = operation_parser();
-	return(exec_operation_checker(&stack));
+	return (1);
+}
+
+void	execute_prog(char **prog, t_heap *heap)
+{
+	int	i;
+
+	i = 0;
+	while (i < heap->a.len)
+	{
+		if (i > 0)
+			ft_printf(" ");
+		ft_printf("%d", heap->a.pile[i++]);
+	}
+	ft_printf("\n");
+	i = 0;
+	while (prog[i])
+	{
+		browse_function(prog[i], i, heap);
+		i++;
+	}
+	if (is_sorted(heap))
+		ft_printf("OK\n");
+	else
+		ft_printf("KO\n");
+}
+
+int main(int ac, char **av)
+{
+	char **prog;
+	t_heap *heap;
+
+	if (!(heap = parser(ac, av)) || (!(prog = programme_read())))
+	{
+		ft_printf("usage: \n");
+		return (0);
+	}
+	init_math(heap);
+	execute_prog(prog, heap);
+	return (0);
 }
