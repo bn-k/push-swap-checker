@@ -1,69 +1,72 @@
 
 #include "push_swap.h"
 
-void	go_to(int *pile, int needle)
+int	get_closest(t_pile *stack, int needle, t_heap *heap)
 {
 	int	i;
-
-	i = 0;
-	while (pile[i] != needle)
-	{
-		i++;
-	}
-}
-
-void	print_clean(int *clean, int len)
-{
-	int	i;
-
-	i = 0;
-	ft_printf("Clean ");
-	while (i < len)
-	{
-		ft_printf("%d ", clean[i]);
-		i++;
-	}
-	ft_printf("\n");
-}
-
-int	get_closest(t_heap *heap, int needle, int *clean, int len, t_pile *from, t_pile *to)
-{
-	int	i;
+	int	ret;
 	int	closest;
-	int	flag;
 
+
+	if (heap->verb)
+		ft_printf("Find of closest of %d\n", needle);
 	i = 0;
-	closest = 0;
-	print_heap(heap);
-	print_clean(clean, len);
-	while (0 < from->sort(needle, clean[i + 1]) || 0 > from->sort(needle, clean[i + 1]))
+	closest = stack->of;
+	ret = 0;
+	while (i < stack->len)
 	{
-	ft_printf("Inferieur! %d", (0 > from->sort(needle, clean[i])));
+		if (stack->pile[i] < closest && stack->oper(stack->pile[i], needle))
+		{
+			closest = stack->pile[i];
+			ret = i;
+		}
 		i++;
 	}
-	ft_printf("\n");
-	return (closest);
+	if (heap->verb)
+		ft_printf("Closest found %d\n", closest);
+	return (ret);
+}
+
+void	to_closest(t_heap *heap, t_pile *from, t_pile *to)
+{
+	int	i_closest;
+	int	i;
+
+	i = 0;
+	if (heap->verb)
+	{
+		ft_printf("=======================To closest========================\n");
+		getchar();
+	}
+	i_closest = get_closest(to, from->pile[0], heap);
+	if (heap->verb)
+		ft_printf("Index of closest %d\n", i_closest);
+	if (to->len - i_closest >= i_closest)
+		while (i < i_closest)
+		{
+			exec_ope(to->rotate, heap);
+			i++;
+		}
+	else
+		while (i < to->len - i_closest)
+		{
+			exec_ope(to->reverse, heap);
+			i++;
+		}
+
+	exec_ope(from->push, heap);
+	if (heap->verb)
+		print_heap(heap);
 }
 
 void	insert_sort(t_heap *heap, t_pile *from, t_pile *to)
 {
-	int *clean;
-	int	closest;
-
-	clean = NULL;
-	print_heap(heap);
-	while (from->len > 0)
+	if (heap->verb)
 	{
-		if (to->len > 0)
-		{
-			if (clean)
-				ft_memdel((void**)&clean);
-			clean = pre_sort(heap, to->pile, to->len);
-			closest = get_closest(heap, from->pile[0], clean, to->len, from, to);
-		//	ft_printf("Closest of %d is %d\n", from->pile[0], closest);
-			exec_ope(from->push, heap);
-		}
-		else
-			exec_ope(from->push, heap);
+		ft_printf("=====================================INSERT=====================================\n");
+		print_heap(heap);
+
 	}
+	while (from->len > 0)
+		to_closest(heap, from, to);
 }

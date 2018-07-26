@@ -78,9 +78,19 @@ int	*pre_sort(t_heap *heap, int *tab, int len)
 	return (clean);
 }
 
+void	slide(t_heap *heap)
+{
+	int	min;
+	int	i;
+
+	i = 0;
+}
+
 void	push_swap(t_heap *heap)
 {
-	insert_sort(heap, &heap->a, &heap->b);
+	quick_sort(heap);
+	insert_sort(heap, &heap->b, &heap->a);
+	slide(heap);
 }
 
 int main(int ac, char **av)
@@ -92,6 +102,9 @@ int main(int ac, char **av)
 		return (0);
 	}
 	init_math(heap);
+	heap->verb = 1;
+	if (heap->verb)
+		getchar();
 	push_swap(heap);
 	return (0);
 }

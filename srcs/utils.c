@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <limits.h>
 
 void	print_heap(t_heap *heap)
 {
@@ -34,6 +35,16 @@ void	print_heap(t_heap *heap)
 	ft_printf("\n");
 }
 
+int	upper(int a, int b)
+{
+	return ((a > b ? 1 : 0));
+}
+
+int	lower(int a, int b)
+{
+	return ((a < b ? 1 : 0));
+}
+
 void	init_math(t_heap *heap)
 {
 	heap->turn = 3;
@@ -49,6 +60,14 @@ void	init_math(t_heap *heap)
 	heap->b.rotate = ft_strdup("rb");
 	heap->a.reverse= ft_strdup("rra");
 	heap->b.reverse= ft_strdup("rrb");
+	heap->a.swap= ft_strdup("sa");
+	heap->b.swap= ft_strdup("sb");
 	heap->a.sort = &increase;
 	heap->b.sort = &decrease;
+	heap->a.position= 0;
+	heap->b.position= 1;
+	heap->a.oper = upper;
+	heap->b.oper = lower;
+	heap->a.of = INT_MAX;
+	heap->b.of = INT_MIN;
 }

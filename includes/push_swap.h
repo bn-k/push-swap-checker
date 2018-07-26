@@ -24,12 +24,6 @@
 # define KWHT  "\x1B[37m"
 # define ABS(x) (x < 0 ? -x : x)
 
-typedef struct	s_next
-{
-	int	nb;
-	int	index;
-}		t_next;
-
 typedef struct	s_quick
 {
 	int	*i;
@@ -48,7 +42,11 @@ typedef struct	s_pile
 	char			*push;
 	char			*rotate;
 	char			*reverse;
+	char			*swap;
 	int			(*sort)(int, int);
+	int			(*oper)(int, int);
+	int			of;
+	int			position;
 	t_quick			quick;
 }		t_pile;
 
@@ -57,9 +55,11 @@ typedef struct	s_heap
 	t_pile	a;
 	t_pile	b;
 	int	len;
+	int	min;
 	int	turn;
 	int	sorted;
 	int	*clean;
+	int	verb;
 }		t_heap;
 
 typedef struct	s_ope
@@ -104,7 +104,8 @@ void	exec_ope(char *code_ope, t_heap *heap);
 void	basic_quick_sort(int *arr, int low, int high);
 int	*pre_sort(t_heap *heap, int *tab, int len);
 	
-
+int	upper(int a, int b);
+int	lower(int a, int b);
 
 static const t_ope g_ope[] =
 {
