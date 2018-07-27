@@ -100,7 +100,7 @@ void	reverse_rotate_a(t_heap *heap);
 void	reverse_rotate_b(t_heap *heap);
 void	reverse_rotate_both(t_heap *heap);
 
-void	exec_ope(char *code_ope, t_heap *heap);
+int	exec_ope(char *code_ope, t_heap *heap);
 void	basic_quick_sort(int *arr, int low, int high);
 int	*pre_sort(t_heap *heap, int *tab, int len);
 	

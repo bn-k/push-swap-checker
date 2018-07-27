@@ -80,10 +80,12 @@ int	*pre_sort(t_heap *heap, int *tab, int len)
 
 void	slide(t_heap *heap)
 {
-	int	min;
-	int	i;
+	int	*sorted;
 
-	i = 0;
+	sorted = pre_sort(heap, heap->a.pile, heap->a.len);
+	while (heap->a.pile[0] != sorted[0])
+		exec_ope("rra", heap);
+	free(sorted);
 }
 
 void	push_swap(t_heap *heap)
@@ -102,7 +104,7 @@ int main(int ac, char **av)
 		return (0);
 	}
 	init_math(heap);
-	heap->verb = 1;
+	heap->verb = 0;
 	if (heap->verb)
 		getchar();
 	push_swap(heap);

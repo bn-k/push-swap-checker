@@ -74,5 +74,6 @@ int main(int ac, char **av)
 	}
 	init_math(heap);
 	execute_prog(prog, heap);
+	print_heap(heap);
 	return (0);
 }

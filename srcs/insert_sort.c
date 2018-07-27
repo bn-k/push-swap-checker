@@ -27,7 +27,7 @@ int	get_closest(t_pile *stack, int needle, t_heap *heap)
 	return (ret);
 }
 
-void	to_closest(t_heap *heap, t_pile *from, t_pile *to)
+void	insert(t_heap *heap, t_pile *from, t_pile *to)
 {
 	int	i_closest;
 	int	i;
@@ -56,7 +56,10 @@ void	to_closest(t_heap *heap, t_pile *from, t_pile *to)
 
 	exec_ope(from->push, heap);
 	if (heap->verb)
+	{
 		print_heap(heap);
+		ft_printf("==========================================================\n");
+	}
 }
 
 void	insert_sort(t_heap *heap, t_pile *from, t_pile *to)
@@ -68,5 +71,15 @@ void	insert_sort(t_heap *heap, t_pile *from, t_pile *to)
 
 	}
 	while (from->len > 0)
-		to_closest(heap, from, to);
+		insert(heap, from, to);
+	if (heap->verb)
+	{
+		ft_printf("heap b 0 = %d\n", heap->b.pile[0]);
+	}
+	if (heap->verb)
+	{
+		print_heap(heap);
+
+		ft_printf("============================ END ==============================\n");
+	}
 }

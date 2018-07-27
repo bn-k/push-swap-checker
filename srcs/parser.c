@@ -49,7 +49,7 @@ static t_heap	*parser_two_arg(int ac, char **av)
 	heap = (t_heap*)malloc(sizeof(t_heap));
 	if (-1 == (heap->len = string_checker(s)))
 		return (NULL);
-	if (!(heap->a.pile = (int*)malloc(sizeof(int) * heap->len)))
+	if (!(heap->a.pile = (int*)malloc(sizeof(int) * (heap->len + 1 ))))
 		return (NULL);
 	if (!(heap->b.pile = (int*)malloc(sizeof(int) * heap->len)))
 		return (NULL);
@@ -74,7 +74,7 @@ static t_heap	*parser_infinite_arg(int ac, char **av)
 	heap = (t_heap*)malloc(sizeof(t_heap));
 	if (-1 == (heap->len = string_checker(s)))
 		return (NULL);
-	if (!(heap->a.pile = (int*)malloc(sizeof(int) * heap->len)))
+	if (!(heap->a.pile = (int*)malloc(sizeof(int) * (heap->len + 1))))
 		return (NULL);
 	if (!(heap->b.pile = (int*)malloc(sizeof(int) * heap->len)))
 		return (NULL);

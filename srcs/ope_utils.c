@@ -24,7 +24,7 @@ void	to_down(int **heap, int len)
 	}
 }
 
-void	exec_ope(char *code_ope, t_heap *heap)
+int	exec_ope(char *code_ope, t_heap *heap)
 {
 	int	i;
 
@@ -35,7 +35,9 @@ void	exec_ope(char *code_ope, t_heap *heap)
 		{
 			g_ope[i].func_ope(heap);
 			ft_putendl(code_ope);
+			return (1);
 		}
 		i++;
 	}
+	return (0);
 }

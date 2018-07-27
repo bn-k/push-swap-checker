@@ -1,4 +1,4 @@
-gshuf -i 1-$2 -n $1 | tr '\n' ' ' > range;
+gshuf -i 1-$1 -n $1 | tr '\n' ' ' > range;
 
 ARG=$(cat range);
 
