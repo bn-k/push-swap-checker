@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/29 15:26:12 by abbenham          #+#    #+#             */
+/*   Updated: 2018/07/29 15:51:54 by abbenham         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 #include "get_next_line.h"
 
@@ -10,7 +22,10 @@ char	**programme_read(void)
 	prog = NULL;
 	i = 0;
 	while (get_next_line(0, &ope))
-		prog = tabcat(prog, ope, ++i);
+	{
+		if (!(prog = tabcat(prog, ope, ++i)))
+			return (NULL);
+	}
 	prog[i] = NULL;
 	return (prog);
 }
@@ -30,7 +45,7 @@ static int	browse_function(char *ope, int step, t_heap *heap)
 		}
 		else if (i == END - 1)
 		{
-			ft_printf("Wrong operation: %s\n", ope);
+			ft_printf("Error\n");
 			return(0);
 		}
 		i++;
@@ -67,11 +82,18 @@ int main(int ac, char **av)
 	char **prog;
 	t_heap *heap;
 
-	if (!(heap = parser(ac, av)) || (!(prog = programme_read())))
+	if (!(heap = parser(ac, av)))
 	{
 		ft_printf("usage: \n");
 		return (0);
 	}
+	if (!(prog = programme_read()))
+	{
+		ft_printf("Malloc error: \n");
+		return (0);
+	}
+	/*
+	*/
 	init_math(heap);
 	execute_prog(prog, heap);
 	return (0);

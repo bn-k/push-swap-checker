@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 15:26:57 by abbenham          #+#    #+#             */
-/*   Updated: 2018/05/29 16:02:10 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/07/29 15:26:56 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ void	push_swap(t_heap *heap)
 int main(int ac, char **av)
 {
 	t_heap *heap;
+	if (ac == 1)
+		return (0);
 	if (!(heap = parser(ac, av)))
 	{
 		ft_printf("usage: ./push_swap [arg]\n");

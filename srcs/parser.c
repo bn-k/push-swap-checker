@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/29 15:26:48 by abbenham          #+#    #+#             */
+/*   Updated: 2018/07/29 15:26:50 by abbenham         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static int	duplicate(t_heap *heap)
@@ -31,8 +43,15 @@ static int	string_checker(char **s)
 	{
 		j = 0;
 		while (s[i][j])
-			if (!isdigit(s[i][j++]))
+		{
+			if (isdigit(s[i][j]) || s[i][j] == '-')
+				;
+			else
+			{
 				return (-1);
+			}
+			j++;
+		}
 		i++;
 	}
 	return (i);
