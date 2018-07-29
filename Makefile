@@ -81,8 +81,7 @@ comp_ps:
 	$(CC) -o $(PS) $(PS_SRCS) $(INC) $(LIB_INC) -L$(D_LIB) $(F_LIB)
 
 comp_view_stack:
-	echo "view stack ok"
-	##go build $(VIEW_SRCS)
+	go build $(VIEW_SRCS)
 
 clean:
 	rm -Rf $(CHECKER) $(PS) $(VIEW_STACK)
