@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	get_pivot(int *heap, int last)
+int	get_pivot(long *heap, int last)
 {
 	int	ave;
 	int	i;

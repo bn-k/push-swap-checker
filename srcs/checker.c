@@ -13,7 +13,7 @@
 #include "push_swap.h"
 #include "get_next_line.h"
 
-char	**programme_read(void)
+char		**programme_read(void)
 {
 	char	*ope;
 	char	**prog;
@@ -21,12 +21,16 @@ char	**programme_read(void)
 
 	prog = NULL;
 	i = 0;
-	while (get_next_line(0, &ope))
+	int gnl;
+	while (1 == (gnl = get_next_line(0, &ope)))
 	{
 		if (!(prog = tabcat(prog, ope, ++i)))
+		{
 			return (NULL);
+		}
+		prog[i] = NULL;
 	}
-	prog[i] = NULL;
+	//ft_printf("gnl = %d\n", gnl);
 	return (prog);
 }
 
@@ -45,7 +49,7 @@ static int	browse_function(char *ope, int step, t_heap *heap)
 		}
 		else if (i == END - 1)
 		{
-			ft_printf("Error\n");
+			ft_printf("Browse function: Error >%s<\n", ope);
 			return(0);
 		}
 		i++;
@@ -53,11 +57,35 @@ static int	browse_function(char *ope, int step, t_heap *heap)
 	return (1);
 }
 
-void	execute_prog(char **prog, t_heap *heap)
+static int	execute_prog(char **prog, t_heap *heap)
 {
 	int	i;
 
 	i = 0;
+	i = 0;
+	while (prog[i])
+	{
+		if (!browse_function(prog[i], i, heap))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int 		main(int ac, char **av)
+{
+	char **prog;
+	t_heap *heap;
+	int	i;
+
+	i = 0;
+	if (!(heap = parser(ac, av)))
+	{
+		ft_printf("Checker: Error\n");
+		return (0);
+	}
+	init_math(heap);
+	prog = programme_read();
 	while (i < heap->a.len)
 	{
 		if (i > 0)
@@ -65,36 +93,11 @@ void	execute_prog(char **prog, t_heap *heap)
 		ft_printf("%d", heap->a.pile[i++]);
 	}
 	ft_printf("\n");
-	i = 0;
-	while (prog[i])
-	{
-		browse_function(prog[i], i, heap);
-		i++;
-	}
+	if (prog)
+		execute_prog(prog, heap);
 	if (is_sorted(heap))
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
-}
-
-int main(int ac, char **av)
-{
-	char **prog;
-	t_heap *heap;
-
-	if (!(heap = parser(ac, av)))
-	{
-		ft_printf("usage: \n");
-		return (0);
-	}
-	if (!(prog = programme_read()))
-	{
-		ft_printf("Malloc error: \n");
-		return (0);
-	}
-	/*
-	*/
-	init_math(heap);
-	execute_prog(prog, heap);
 	return (0);
 }

@@ -12,15 +12,6 @@
 
 #include "push_swap.h"
 
-int	increase(int x, int y)
-{
-	return (x - y);
-}
-
-int	decrease(int x, int y)
-{
-	return (y - x);
-}
 
 int	is_sorted(t_heap *heap)
 {

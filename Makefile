@@ -54,6 +54,7 @@ PS_SRC=\
      reverse.c \
      quick_sort.c \
      insert_sort.c \
+     small_sort.c \
 
 VIEW_SRC=\
  	view_stack.go \

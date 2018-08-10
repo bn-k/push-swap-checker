@@ -23,7 +23,7 @@ static int	duplicate(t_heap *heap)
 		j = 0;
 		while (j < heap->len)
 		{
-			if (heap->a.pile[j] == heap->a.pile[i] && j != i)
+			if ((heap->a.pile[j] == heap->a.pile[i] && j != i) || heap->a.pile[i] > INT_MAX || heap->a.pile[i] < INT_MIN)
 				return (-1);
 			j++;
 		}
@@ -68,13 +68,13 @@ static t_heap	*parser_two_arg(int ac, char **av)
 	heap = (t_heap*)malloc(sizeof(t_heap));
 	if (-1 == (heap->len = string_checker(s)))
 		return (NULL);
-	if (!(heap->a.pile = (int*)malloc(sizeof(int) * (heap->len + 1 ))))
+	if (!(heap->a.pile = (long*)malloc(sizeof(long) * (heap->len + 1))))
 		return (NULL);
-	if (!(heap->b.pile = (int*)malloc(sizeof(int) * heap->len)))
+	if (!(heap->b.pile = (long*)malloc(sizeof(long) * heap->len)))
 		return (NULL);
 	while (i < heap->len)
 	{
-		heap->a.pile[i] = ft_atoi(s[i]);
+		heap->a.pile[i] = ft_atoi_long(s[i]);
 		i++;
 	}
 	if (-1 == (duplicate(heap)))
@@ -93,13 +93,13 @@ static t_heap	*parser_infinite_arg(int ac, char **av)
 	heap = (t_heap*)malloc(sizeof(t_heap));
 	if (-1 == (heap->len = string_checker(s)))
 		return (NULL);
-	if (!(heap->a.pile = (int*)malloc(sizeof(int) * (heap->len + 1))))
+	if (!(heap->a.pile = (long*)malloc(sizeof(long) * (heap->len + 1))))
 		return (NULL);
-	if (!(heap->b.pile = (int*)malloc(sizeof(int) * heap->len)))
+	if (!(heap->b.pile = (long*)malloc(sizeof(long) * heap->len)))
 		return (NULL);
 	while (i < heap->len)
 	{
-		heap->a.pile[i] = ft_atoi(s[i]);
+		heap->a.pile[i] = ft_atoi_long(s[i]);
 		i++;
 	}
 	if (-1 == (duplicate(heap)))

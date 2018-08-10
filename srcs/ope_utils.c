@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	to_up(int **heap, int len)
+void	to_up(long **heap, int len)
 {
 	int	i;
 
@@ -24,7 +24,7 @@ void	to_up(int **heap, int len)
 	}
 }
 
-void	to_down(int **heap, int len)
+void	to_down(long **heap, int len)
 {
 	int	i;
 

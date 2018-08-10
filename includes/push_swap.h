@@ -36,7 +36,7 @@ typedef struct	s_quick
 typedef struct	s_pile
 {
 	char			id;
-	int			*pile;
+	long int			*pile;
 	int			len;
 	struct s_pile		*other;
 	char			*push;
@@ -71,7 +71,9 @@ typedef struct	s_ope
 
 void	quick_sort(t_heap *heap);
 
-void	insert_sort(t_heap *heap, t_pile *from, t_pile *to);
+void	small_sort(t_heap *heap);
+
+void	insert_sort(t_heap *heap, t_pile *from, t_pile *to, int limit);
 
 t_heap	*parser(int ac, char **av);
 void	print_heap(t_heap *heap);
@@ -82,8 +84,8 @@ int	increase(int x, int y);
 int	decrease(int x, int y);
 
 void	test(t_heap *heap);
-void	to_up(int **heap, int len);
-void	to_down(int **heap, int len);
+void	to_up(long **heap, int len);
+void	to_down(long **heap, int len);
 
 void	swap_a(t_heap *heap);
 void	swap_b(t_heap *heap);
@@ -101,8 +103,8 @@ void	reverse_rotate_b(t_heap *heap);
 void	reverse_rotate_both(t_heap *heap);
 
 int	exec_ope(char *code_ope, t_heap *heap);
-void	basic_quick_sort(int *arr, int low, int high);
-int	*pre_sort(t_heap *heap, int *tab, int len);
+void	basic_quick_sort(long *arr, int low, int high);
+long	*pre_sort(t_heap *heap, long *tab, int len);
 	
 int	upper(int a, int b);
 int	lower(int a, int b);

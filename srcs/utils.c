@@ -35,6 +35,16 @@ void	print_heap(t_heap *heap)
 	ft_printf("\n");
 }
 
+int	increase(int a, int b)
+{
+	return (a - b);
+}
+
+int	decrease(int a, int b)
+{
+	return (b - a);
+}
+
 int	upper(int a, int b)
 {
 	return ((a > b ? 1 : 0));

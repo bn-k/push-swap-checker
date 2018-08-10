@@ -26,7 +26,7 @@ int	sorted(int *arr, int len)
 	return (1);
 }
 
-void	basic_quick_sort(int *arr, int low, int high)
+void	basic_quick_sort(long *arr, int low, int high)
 {
 	int	pivot;
 	int	i;
@@ -62,13 +62,13 @@ void	basic_quick_sort(int *arr, int low, int high)
 	}
 }
 
-int	*pre_sort(t_heap *heap, int *tab, int len)
+long	*pre_sort(t_heap *heap, long *tab, int len)
 {
 	int	i;
-	int	*clean;
+	long	*clean;
 
 	i = 0;
-	clean = (int*)malloc(sizeof(int) * len);
+	clean = (long*)malloc(sizeof(long) * len);
 	while (i < len)
 	{
 		clean[i] = tab[i];
@@ -80,7 +80,7 @@ int	*pre_sort(t_heap *heap, int *tab, int len)
 
 void	slide(t_heap *heap)
 {
-	int	*sorted;
+	long *sorted;
 
 	sorted = pre_sort(heap, heap->a.pile, heap->a.len);
 	while (heap->a.pile[0] != sorted[0])
@@ -90,9 +90,14 @@ void	slide(t_heap *heap)
 
 void	push_swap(t_heap *heap)
 {
-	quick_sort(heap);
-	insert_sort(heap, &heap->b, &heap->a);
-	slide(heap);
+	if (heap->a.len < 20)
+		small_sort(heap);
+	else
+	{
+		quick_sort(heap);
+		insert_sort(heap, &heap->b, &heap->a, heap->b.len);
+		slide(heap);
+	}
 }
 
 int main(int ac, char **av)
@@ -106,7 +111,7 @@ int main(int ac, char **av)
 		return (0);
 	}
 	init_math(heap);
-	heap->verb = 0;
+	heap->verb = 1;
 	if (heap->verb)
 		getchar();
 	push_swap(heap);
