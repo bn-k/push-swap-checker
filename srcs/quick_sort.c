@@ -108,13 +108,13 @@ void	shift(t_heap *heap, t_pile *stack)
 	}
 }
 
-void	quick_sort(t_heap *heap)
+void	quick_sort(t_heap *heap, int turn)
 {
 	heap->a.quick.i = (int*)malloc(sizeof(int) * heap->len);
 	heap->b.quick.i = (int*)malloc(sizeof(int) * heap->len);
 	heap->a.quick.len = 1;
 	heap->b.quick.len = 0;
 	heap->a.quick.i[0] = heap->len;
-	heap->turn = 3;
+	heap->turn = turn;
 	shift(heap, &heap->a);
 }

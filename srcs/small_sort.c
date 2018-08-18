@@ -1,6 +1,7 @@
 #include "push_swap.h"
 
 #define PA(x) heap->a.pile[x]
+#define NOTHING_TO_DO ;
 
 void	three_sort(t_heap *heap)	
 {
@@ -24,7 +25,9 @@ void	three_sort(t_heap *heap)
 
 void	small_sort(t_heap *heap)	
 {
-	if (heap->a.len == 2)
+	if (heap->a.len == 1)
+		NOTHING_TO_DO
+	else if (heap->a.len == 2)
 	{
 		if (!is_sorted(heap))
 			exec_ope("sa", heap);
@@ -32,5 +35,8 @@ void	small_sort(t_heap *heap)
 	else if (heap->a.len == 3)
 		three_sort(heap);
 	else
-		insert_sort(heap, &heap->a, &heap->b, heap->a.len);
+	{
+		quick_sort(heap, 1);
+		insert_sort(heap, &heap->b, &heap->a, heap->b.len);
+	}
 }

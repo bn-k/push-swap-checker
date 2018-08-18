@@ -69,7 +69,7 @@ typedef struct	s_ope
 	char		*name;
 }				t_ope;
 
-void	quick_sort(t_heap *heap);
+void	quick_sort(t_heap *heap, int turn);
 
 void	small_sort(t_heap *heap);
 

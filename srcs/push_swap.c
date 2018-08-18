@@ -91,10 +91,13 @@ void	slide(t_heap *heap)
 void	push_swap(t_heap *heap)
 {
 	if (heap->a.len < 20)
+	{
 		small_sort(heap);
+		slide(heap);
+	}
 	else
 	{
-		quick_sort(heap);
+		quick_sort(heap, 3);
 		insert_sort(heap, &heap->b, &heap->a, heap->b.len);
 		slide(heap);
 	}

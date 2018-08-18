@@ -12,6 +12,9 @@
 
 #include "push_swap.h"
 
+
+#include "push_swap.h"
+
 int	get_closest(t_pile *stack, int needle, t_heap *heap)
 {
 	int	i;
@@ -20,13 +23,13 @@ int	get_closest(t_pile *stack, int needle, t_heap *heap)
 
 
 	if (heap->verb)
-		ft_printf("===> Let's find closest of %d on stack %c\n", needle, stack->id);
+		ft_printf("Find of closest of %d\n", needle);
 	i = 0;
 	closest = stack->of;
 	ret = 0;
 	while (i < stack->len)
 	{
-		if (stack->oper(closest, stack->pile[i]) && stack->oper(stack->pile[i], needle))
+		if (stack->pile[i] < closest && stack->oper(stack->pile[i], needle))
 		{
 			closest = stack->pile[i];
 			ret = i;
@@ -46,7 +49,7 @@ void	insert(t_heap *heap, t_pile *from, t_pile *to)
 	i = 0;
 	if (heap->verb)
 	{
-		ft_printf("======================= Insert from stack %c to stack %c ========================\n", from->id, to->id);
+		ft_printf("=======================To closest========================\n");
 		getchar();
 	}
 	i_closest = get_closest(to, from->pile[0], heap);
@@ -69,25 +72,24 @@ void	insert(t_heap *heap, t_pile *from, t_pile *to)
 	if (heap->verb)
 	{
 		print_heap(heap);
-		ft_printf("*******************************************************************************\n\n\n");
+		ft_printf("==========================================================\n");
 	}
 }
 
 void	insert_sort(t_heap *heap, t_pile *from, t_pile *to, int limit)
 {
-	int	i;
-
-	i = 0;
 	if (heap->verb)
 	{
-		ft_printf("=====================================INSERT=====================================\n\n\n");
+		ft_printf("=====================================INSERT=====================================\n");
 		print_heap(heap);
 
 	}
-	if (to->len == 0)
-		exec_ope(from->push, heap);
-	while (from->len > 0 && i++ < limit)
+	while (from->len > 0)
 		insert(heap, from, to);
+	if (heap->verb)
+	{
+		ft_printf("heap b 0 = %d\n", heap->b.pile[0]);
+	}
 	if (heap->verb)
 	{
 		print_heap(heap);

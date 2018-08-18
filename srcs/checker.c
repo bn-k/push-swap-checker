@@ -44,7 +44,7 @@ static int	browse_function(char *ope, int step, t_heap *heap)
 		if (!ft_strcmp(g_ope[i].code_ope, ope))
 		{
 			g_ope[i].func_ope(heap);
-			ft_printf("%s\n",ope);
+		//	ft_printf("%s\n",ope);
 			i = END;
 		}
 		else if (i == END - 1)
@@ -88,11 +88,12 @@ int 		main(int ac, char **av)
 	prog = programme_read();
 	while (i < heap->a.len)
 	{
-		if (i > 0)
-			ft_printf(" ");
-		ft_printf("%d", heap->a.pile[i++]);
+//		if (i > 0)
+//			ft_printf(" ");
+//		ft_printf("%d", heap->a.pile[i++]);
+		i++;
 	}
-	ft_printf("\n");
+	//ft_printf("\n");
 	if (prog)
 		execute_prog(prog, heap);
 	if (is_sorted(heap))
