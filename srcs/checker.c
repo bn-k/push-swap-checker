@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 15:26:12 by abbenham          #+#    #+#             */
-/*   Updated: 2018/07/29 15:51:54 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/18 20:30:57 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,9 @@ char		**programme_read(void)
 	while (1 == (gnl = get_next_line(0, &ope)))
 	{
 		if (!(prog = tabcat(prog, ope, ++i)))
-		{
 			return (NULL);
-		}
-		prog[i] = NULL;
 	}
-	//ft_printf("gnl = %d\n", gnl);
+	prog[i] = NULL;
 	return (prog);
 }
 
@@ -44,7 +41,6 @@ static int	browse_function(char *ope, int step, t_heap *heap)
 		if (!ft_strcmp(g_ope[i].code_ope, ope))
 		{
 			g_ope[i].func_ope(heap);
-		//	ft_printf("%s\n",ope);
 			i = END;
 		}
 		else if (i == END - 1)
@@ -86,14 +82,6 @@ int 		main(int ac, char **av)
 	}
 	init_math(heap);
 	prog = programme_read();
-	while (i < heap->a.len)
-	{
-//		if (i > 0)
-//			ft_printf(" ");
-//		ft_printf("%d", heap->a.pile[i++]);
-		i++;
-	}
-	//ft_printf("\n");
 	if (prog)
 		execute_prog(prog, heap);
 	if (is_sorted(heap))

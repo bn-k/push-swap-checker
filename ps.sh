@@ -5,4 +5,4 @@ ARG=$(cat range);
 ###cat range;
 
 make
-./push_swap $ARG 
+./push_swap $ARG

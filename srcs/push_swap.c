@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 15:26:57 by abbenham          #+#    #+#             */
-/*   Updated: 2018/07/29 15:26:56 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/18 20:50:44 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,8 @@ int main(int ac, char **av)
 		return (0);
 	}
 	init_math(heap);
-	heap->verb = 1;
+	//print_heap(heap);
+	heap->verb = 0;
 	if (heap->verb)
 		getchar();
 	push_swap(heap);
