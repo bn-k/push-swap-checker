@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 15:26:57 by abbenham          #+#    #+#             */
-/*   Updated: 2018/08/19 17:42:19 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/19 18:12:44 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,21 @@ void	push_swap(t_heap *heap)
 	}
 }
 
+void	ft_quit(t_heap *heap)
+{
+	free(heap->a.push);
+	free(heap->b.push);
+	free(heap->a.rotate);
+	free(heap->b.rotate);
+	free(heap->a.reverse);
+	free(heap->b.reverse);
+	free(heap->a.swap);
+	free(heap->b.swap);
+	free(heap->a.pile);
+	free(heap->b.pile);
+	free(heap);
+}
+
 int main(int ac, char **av)
 {
 	t_heap *heap;
@@ -88,5 +103,6 @@ int main(int ac, char **av)
 	push_swap(heap);
 	if (heap->verb)
 		print_heap(heap);
+	ft_quit(heap);
 	return (0);
 }

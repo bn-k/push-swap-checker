@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 15:26:12 by abbenham          #+#    #+#             */
-/*   Updated: 2018/08/18 20:30:57 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/19 19:04:03 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ char		**programme_read(void)
 		if (!(prog = tabcat(prog, ope, ++i)))
 			return (NULL);
 	}
+	if (prog == NULL)
+		return (NULL);
 	prog[i] = NULL;
 	return (prog);
 }

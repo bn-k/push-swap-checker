@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 15:26:48 by abbenham          #+#    #+#             */
-/*   Updated: 2018/08/19 13:40:15 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/19 19:06:14 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static t_heap	*parser_two_arg(int ac, char **av)
 		heap->a.pile[i] = ft_atoi_long(s[i]);
 		i++;
 	}
-	if (-1 == (duplicate(heap)))
+	if (-1 == (duplicate(heap)) || heap->len < 1)
 		return (NULL);
 	return (heap);
 }
@@ -91,7 +91,7 @@ static t_heap	*parser_infinite_arg(int ac, char **av)
 
 	i = 0;
 	s = &av[1];
-	heap = (t_heap*)malloc(sizeof(t_heap));
+	heap = (t_heap*)malloc(sizeof(t_heap) + 200);
 	if (-1 == (heap->len = string_checker(s)))
 		return (NULL);
 	if (!(heap->a.pile = (long*)malloc(sizeof(long) * (heap->len + 1))))
