@@ -1,55 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ope_utils.c                                        :+:      :+:    :+:   */
+/*   quick_sort_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/29 15:26:40 by abbenham          #+#    #+#             */
-/*   Updated: 2018/08/19 13:36:04 by abbenham         ###   ########.fr       */
+/*   Created: 2018/08/19 13:25:50 by abbenham          #+#    #+#             */
+/*   Updated: 2018/08/19 15:30:10 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	to_up(long **heap, int len)
+
+int	get_pivot(long *heap, int last)
 {
+	int	ave;
 	int	i;
 
+	ave = 0;
 	i = 0;
-	while (i < len)
+	while (i < last)
 	{
-		heap[0][i] = heap[0][i + 1];
+		ave += heap[i];
 		i++;
 	}
-}
-
-void	to_down(long **heap, int len)
-{
-	int	i;
-
-	i = 0;
-	while (len > -1)
-	{
-		heap[0][len + 1] = heap[0][len];
-		len--;
-	}
-}
-
-int	exec_ope(char *code_ope, t_heap *heap)
-{
-	int	i;
-
-	i = 0;
-	while (i < END)
-	{
-		if (!ft_strcmp(code_ope, g_ope[i].code_ope))
-		{
-			g_ope[i].func_ope(heap);
-			ft_putendl(code_ope);
-			return (1);
-		}
-		i++;
-	}
-	return (0);
+	if (i == 0)
+		return (ave);
+	return (ave / i);
 }

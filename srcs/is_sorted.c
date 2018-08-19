@@ -6,12 +6,11 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 15:26:32 by abbenham          #+#    #+#             */
-/*   Updated: 2018/07/29 15:26:33 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/19 13:40:22 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 int	is_sorted(t_heap *heap)
 {

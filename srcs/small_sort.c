@@ -23,6 +23,30 @@ void	three_sort(t_heap *heap)
 		exec_ope("rra", heap);
 }
 
+void	unit_sort(t_heap *heap)	
+{
+	int pivot;
+
+	pivot = get_pivot(heap->a.pile, heap->a.len);
+	while (heap->a.len > 3)
+	{
+		if (heap->a.pile[0] > pivot)
+		{
+			exec_ope("pb", heap);
+			if (heap->b.len > 1)
+				if (heap->b.pile[0] < heap->b.pile[1])
+				{
+					exec_ope("sb", heap);
+				}
+		}
+		else
+			exec_ope("ra", heap);
+	}
+	three_sort(heap);
+	insert_sort(heap, &heap->b, &heap->a, heap->b.len);
+//	print_heap(heap);
+}
+
 void	small_sort(t_heap *heap)	
 {
 	if (heap->a.len == 1)
@@ -34,6 +58,8 @@ void	small_sort(t_heap *heap)
 	}
 	else if (heap->a.len == 3)
 		three_sort(heap);
+	else if (heap->a.len > 3 && heap->a.len < 6)
+		unit_sort(heap);
 	else
 	{
 		quick_sort(heap, 1);

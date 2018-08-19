@@ -9,6 +9,7 @@ for i in range {1..99}
 		if [ "$RET" != "OK" ];
 			then
 			((ERR++))
+			echo $ARG
 			echo $RET
 			echo -en '\033[0;31m▓\033[0;0m'
 		else
@@ -33,6 +34,7 @@ for i in range {1..99}
 		if [ $RET -gt 12 ];
 			then
 			((ERR++))
+			echo $ARG
 			echo -en '\033[0;31m▓\033[0;0m'
 		else
 			echo -en '\033[0;32m▓\033[0;0m'

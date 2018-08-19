@@ -6,12 +6,9 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 15:26:24 by abbenham          #+#    #+#             */
-/*   Updated: 2018/07/29 15:26:29 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/19 17:17:26 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "push_swap.h"
-
 
 #include "push_swap.h"
 
@@ -21,7 +18,6 @@ int	get_closest(t_pile *stack, int needle, t_heap *heap)
 	int	ret;
 	int	closest;
 
-
 	if (heap->verb)
 		ft_printf("Find of closest of %d\n", needle);
 	i = 0;
@@ -29,7 +25,8 @@ int	get_closest(t_pile *stack, int needle, t_heap *heap)
 	ret = 0;
 	while (i < stack->len)
 	{
-		if (stack->pile[i] < closest && stack->oper(stack->pile[i], needle))
+	//	ft_printf("stack pile[%d] = %d, closest = %d, needle = %d\n", i, stack->pile[i], closest, needle);
+		if (stack->pile[i] < closest && stack->pile[i] > needle)
 		{
 			closest = stack->pile[i];
 			ret = i;
@@ -53,26 +50,34 @@ void	insert(t_heap *heap, t_pile *from, t_pile *to)
 		getchar();
 	}
 	i_closest = get_closest(to, from->pile[0], heap);
-	if (heap->verb)
-		ft_printf("Index of closest %d\n", i_closest);
-	if (to->len - i_closest >= i_closest)
-		while (i < i_closest)
-		{
-			exec_ope(to->rotate, heap);
-			i++;
-		}
-	else
-		while (i < to->len - i_closest)
-		{
-			exec_ope(to->reverse, heap);
-			i++;
-		}
-
-	exec_ope(from->push, heap);
-	if (heap->verb)
+	if (i_closest == -1)
 	{
-		print_heap(heap);
-		ft_printf("==========================================================\n");
+		exec_ope(to->rotate, heap);
+		exec_ope(to->push, heap);
+	}
+	else 
+	{
+		if (heap->verb)
+			ft_printf("Index of closest %d\n", i_closest);
+		if (to->len - i_closest >= i_closest)
+			while (i < i_closest)
+			{
+				exec_ope(to->rotate, heap);
+				i++;
+			}
+		else
+			while (i < to->len - i_closest)
+			{
+				exec_ope(to->reverse, heap);
+				i++;
+			}
+
+		exec_ope(from->push, heap);
+		if (heap->verb)
+		{
+			print_heap(heap);
+			ft_printf("==========================================================\n");
+		}
 	}
 }
 

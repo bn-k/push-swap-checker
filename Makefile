@@ -53,6 +53,8 @@ PS_SRC=\
      rotate.c \
      reverse.c \
      quick_sort.c \
+     quick_sort_utils.c \
+	 slide.c \
      insert_sort.c \
      small_sort.c \
 

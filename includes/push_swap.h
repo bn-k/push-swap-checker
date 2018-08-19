@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 16:15:15 by abbenham          #+#    #+#             */
-/*   Updated: 2018/06/04 17:48:31 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/19 17:26:38 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ typedef struct	s_ope
 }				t_ope;
 
 void	quick_sort(t_heap *heap, int turn);
+int		get_pivot(long *heap, int last);
+void	shift(t_heap *heap, t_pile *stack);
 
 void	small_sort(t_heap *heap);
 
@@ -82,6 +84,7 @@ void	init_math(t_heap *heap);
 int	is_sorted(t_heap *heap);
 int	increase(int x, int y);
 int	decrease(int x, int y);
+void	slide(t_heap *heap);
 
 void	test(t_heap *heap);
 void	to_up(long **heap, int len);

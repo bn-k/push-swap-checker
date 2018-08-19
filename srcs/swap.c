@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 15:27:17 by abbenham          #+#    #+#             */
-/*   Updated: 2018/07/29 15:27:19 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/19 13:42:17 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,3 @@ void	swap_both(t_heap *heap)
 	swap_a(heap);
 	swap_b(heap);
 }
-

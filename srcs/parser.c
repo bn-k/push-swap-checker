@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 15:26:48 by abbenham          #+#    #+#             */
-/*   Updated: 2018/07/29 15:26:50 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/19 13:40:15 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static int	duplicate(t_heap *heap)
 		j = 0;
 		while (j < heap->len)
 		{
-			if ((heap->a.pile[j] == heap->a.pile[i] && j != i) || heap->a.pile[i] > INT_MAX || heap->a.pile[i] < INT_MIN)
+			if ((heap->a.pile[j] == heap->a.pile[i] && j != i) ||\
+					heap->a.pile[i] > INT_MAX || heap->a.pile[i] < INT_MIN)
 				return (-1);
 			j++;
 		}
