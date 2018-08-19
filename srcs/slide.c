@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/19 14:45:18 by abbenham          #+#    #+#             */
-/*   Updated: 2018/08/19 17:42:10 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/19 19:18:51 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int		get_index_of_min(t_heap *heap)
 {
-	int	i;
-	long min;
-	int index_of_min;
+	int		i;
+	long	min;
+	int		index_of_min;
 
 	min = INT_MAX;
 	i = 0;
@@ -34,7 +34,7 @@ int		get_index_of_min(t_heap *heap)
 
 long	*pre_sort(t_heap *heap, long *tab, int len)
 {
-	int	i;
+	int		i;
 	long	*clean;
 
 	i = 0;
@@ -44,18 +44,17 @@ long	*pre_sort(t_heap *heap, long *tab, int len)
 		clean[i] = tab[i];
 		i++;
 	}
-	basic_quick_sort(clean, 0, len-1);
+	basic_quick_sort(clean, 0, len - 1);
 	return (clean);
 }
 
 void	slide(t_heap *heap)
 {
-	long *sorted;
+	long	*sorted;
 	int		index_of_min;
 	int		i;
 
 	i = 0;
-
 	sorted = pre_sort(heap, heap->a.pile, heap->a.len);
 	index_of_min = get_index_of_min(heap);
 	if (index_of_min < heap->a.len / 2 + 1)
@@ -66,4 +65,3 @@ void	slide(t_heap *heap)
 			exec_ope("rra", heap);
 	free(sorted);
 }
-

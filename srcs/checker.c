@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 15:26:12 by abbenham          #+#    #+#             */
-/*   Updated: 2018/08/19 19:04:03 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/19 19:42:59 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,12 @@
 
 char		**programme_read(void)
 {
-	char	*ope;
-	char	**prog;
-	int	i;
+	char		*ope;
+	char		**prog;
+	int			i;
 
 	prog = NULL;
 	i = 0;
-	int gnl;
 	while (1 == (gnl = get_next_line(0, &ope)))
 	{
 		if (!(prog = tabcat(prog, ope, ++i)))
@@ -48,7 +47,7 @@ static int	browse_function(char *ope, int step, t_heap *heap)
 		else if (i == END - 1)
 		{
 			ft_printf("Browse function: Error >%s<\n", ope);
-			return(0);
+			return (0);
 		}
 		i++;
 	}
@@ -70,11 +69,11 @@ static int	execute_prog(char **prog, t_heap *heap)
 	return (1);
 }
 
-int 		main(int ac, char **av)
+int			main(int ac, char **av)
 {
-	char **prog;
-	t_heap *heap;
-	int	i;
+	char	**prog;
+	t_heap	*heap;
+	int		i;
 
 	i = 0;
 	if (!(heap = parser(ac, av)))

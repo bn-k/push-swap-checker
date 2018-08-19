@@ -1,9 +1,19 @@
-#include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   small_sort.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/19 19:22:39 by abbenham          #+#    #+#             */
+/*   Updated: 2018/08/19 19:24:41 by abbenham         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #define PA(x) heap->a.pile[x]
-#define NOTHING_TO_DO ;
+#include "push_swap.h"
 
-void	three_sort(t_heap *heap)	
+void	three_sort(t_heap *heap)
 {
 	if (PA(0) > PA(1) && PA(0) < PA(2) && PA(1) < PA(2))
 		exec_ope("sa", heap);
@@ -23,7 +33,7 @@ void	three_sort(t_heap *heap)
 		exec_ope("rra", heap);
 }
 
-void	unit_sort(t_heap *heap)	
+void	unit_sort(t_heap *heap)
 {
 	int pivot;
 
@@ -44,13 +54,12 @@ void	unit_sort(t_heap *heap)
 	}
 	three_sort(heap);
 	insert_sort(heap, &heap->b, &heap->a, heap->b.len);
-//	print_heap(heap);
 }
 
-void	small_sort(t_heap *heap)	
+void	small_sort(t_heap *heap)
 {
 	if (heap->a.len == 1)
-		NOTHING_TO_DO
+		;
 	else if (heap->a.len == 2)
 	{
 		if (!is_sorted(heap))

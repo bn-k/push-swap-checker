@@ -6,13 +6,13 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 15:26:57 by abbenham          #+#    #+#             */
-/*   Updated: 2018/08/19 18:12:44 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/19 19:28:51 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	sorted(int *arr, int len)
+int			sorted(int *arr, int len)
 {
 	int	i;
 
@@ -26,24 +26,26 @@ int	sorted(int *arr, int len)
 	return (1);
 }
 
-void	basic_quick_sort(long *arr, int low, int high)
+void		basic_quick_sort(long *arr, int low, int high)
 {
 	int	pivot;
 	int	i;
 	int	j;
 	int	temp;
-	if(low < high) 
+
+	if (low < high)
 	{
 		pivot = low;
 		i = low;
 		j = high;
-		while(i < j) 
+		while (i < j)
 		{
-			while(arr[i] <= arr[pivot] && i <= high)
+			while (arr[i] <= arr[pivot] && i <= high)
 				i++;
-			while(arr[j] > arr[pivot] && j >= low)
+			while (arr[j] > arr[pivot] && j >= low)
 				j--;
-			if(i < j) {
+			if (i < j)
+			{
 				temp = arr[i];
 				arr[i] = arr[j];
 				arr[j] = temp;
@@ -52,11 +54,12 @@ void	basic_quick_sort(long *arr, int low, int high)
 		temp = arr[j];
 		arr[j] = arr[pivot];
 		arr[pivot] = temp;
-		basic_quick_sort(arr, low, j-1);
-		basic_quick_sort(arr, j+1, high);
+		basic_quick_sort(arr, low, j - 1);
+		basic_quick_sort(arr, j + 1, high);
 	}
 }
-void	push_swap(t_heap *heap)
+
+void		push_swap(t_heap *heap)
 {
 	if (heap->a.len < 20)
 	{
@@ -71,7 +74,7 @@ void	push_swap(t_heap *heap)
 	}
 }
 
-void	ft_quit(t_heap *heap)
+void		ft_quit(t_heap *heap)
 {
 	free(heap->a.push);
 	free(heap->b.push);
@@ -86,9 +89,10 @@ void	ft_quit(t_heap *heap)
 	free(heap);
 }
 
-int main(int ac, char **av)
+int			main(int ac, char **av)
 {
-	t_heap *heap;
+	t_heap	*heap;
+
 	if (ac == 1)
 		return (0);
 	if (!(heap = parser(ac, av)))

@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 15:26:40 by abbenham          #+#    #+#             */
-/*   Updated: 2018/08/19 13:36:04 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/19 19:21:16 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	to_down(long **heap, int len)
 	}
 }
 
-int	exec_ope(char *code_ope, t_heap *heap)
+int		exec_ope(char *code_ope, t_heap *heap)
 {
 	int	i;
 

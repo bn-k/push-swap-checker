@@ -6,12 +6,11 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/19 13:25:50 by abbenham          #+#    #+#             */
-/*   Updated: 2018/08/19 17:58:35 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/19 19:29:17 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 int	get_pivot(long *heap, int last)
 {

@@ -6,23 +6,24 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 15:27:01 by abbenham          #+#    #+#             */
-/*   Updated: 2018/08/19 17:31:02 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/19 19:37:10 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	iteration(t_heap *heap, t_pile *stack)
+int		iteration(t_heap *heap, t_pile *stack)
 {
 	int	pushed;
 	int	rev;
 
 	if (1 >= stack->quick.i[stack->quick.len - 1] && stack->quick.len > 0)
 		stack->quick.len--;
-	stack->quick.pivot = get_pivot(stack->pile, stack->quick.i[stack->quick.len - 1]);
+	stack->quick.pivot = get_pivot(stack->pile,\
+			stack->quick.i[stack->quick.len - 1]);
 	pushed = 0;
 	rev = 0;
-	while (pushed + rev < stack->quick.i[stack->quick.len -1])
+	while (pushed + rev < stack->quick.i[stack->quick.len - 1])
 	{
 		if (0 >= stack->sort(stack->pile[0], stack->quick.pivot))
 			pushed += exec_ope(stack->push, heap);
@@ -34,32 +35,31 @@ int	iteration(t_heap *heap, t_pile *stack)
 	return (rev);
 }
 
-
-int continue_quick_sort(t_heap *heap, t_pile *stack, int rev)
+int		continue_quick_sort(t_heap *heap, t_pile *stack, int rev)
 {
-		stack->other->quick.i[stack->other->quick.len] = rev;
-		stack->other->quick.len++;
-		while (rev > 0)
-		{
-			rev -= exec_ope(stack->reverse, heap);
-			exec_ope(stack->push, heap);
-		}
-		stack->quick.len--;
-		shift(heap, stack);
-		return (rev);
+	stack->other->quick.i[stack->other->quick.len] = rev;
+	stack->other->quick.len++;
+	while (rev > 0)
+	{
+		rev -= exec_ope(stack->reverse, heap);
+		exec_ope(stack->push, heap);
+	}
+	stack->quick.len--;
+	shift(heap, stack);
+	return (rev);
 }
 
-void  repeat_quick_sort(t_heap *heap, t_pile *stack)
+void	repeat_quick_sort(t_heap *heap, t_pile *stack)
 {
-		stack->quick.i[0] = stack->len;
-		stack->quick.len = 1;
-		shift(heap, stack);
+	stack->quick.i[0] = stack->len;
+	stack->quick.len = 1;
+	shift(heap, stack);
 }
 
 void	shift(t_heap *heap, t_pile *stack)
 {
 	int rev;
-	
+
 	rev = iteration(heap, stack);
 	if (stack->quick.len > 1)
 		rev = continue_quick_sort(heap, stack, rev);

@@ -6,13 +6,13 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 15:26:48 by abbenham          #+#    #+#             */
-/*   Updated: 2018/08/19 19:06:14 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/19 19:25:24 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	duplicate(t_heap *heap)
+static int		duplicate(t_heap *heap)
 {
 	int	i;
 	int	j;
@@ -33,7 +33,7 @@ static int	duplicate(t_heap *heap)
 	return (1);
 }
 
-static int	string_checker(char **s)
+static int		string_checker(char **s)
 {
 	int	i;
 	int	j;
@@ -60,9 +60,9 @@ static int	string_checker(char **s)
 
 static t_heap	*parser_two_arg(int ac, char **av)
 {
-	t_heap *heap;
+	t_heap	*heap;
 	char	**s;
-	int	i;
+	int		i;
 
 	i = 0;
 	s = ft_strsplit(av[1], ' ');
@@ -85,13 +85,13 @@ static t_heap	*parser_two_arg(int ac, char **av)
 
 static t_heap	*parser_infinite_arg(int ac, char **av)
 {
-	t_heap *heap;
-	char **s;
-	int	i;
+	t_heap	*heap;
+	char	**s;
+	int		i;
 
 	i = 0;
 	s = &av[1];
-	heap = (t_heap*)malloc(sizeof(t_heap) + 200);
+	heap = (t_heap*)malloc(sizeof(t_heap));
 	if (-1 == (heap->len = string_checker(s)))
 		return (NULL);
 	if (!(heap->a.pile = (long*)malloc(sizeof(long) * (heap->len + 1))))
@@ -108,10 +108,10 @@ static t_heap	*parser_infinite_arg(int ac, char **av)
 	return (heap);
 }
 
-t_heap	*parser(int ac, char **av)
+t_heap			*parser(int ac, char **av)
 {
 	if (ac == 1)
-		return(NULL);
+		return (NULL);
 	else if (ac == 2)
 		return (parser_two_arg(ac, av));
 	else

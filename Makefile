@@ -38,6 +38,7 @@ CHECKER_SRC =\
      swap.c \
      rotate.c \
      reverse.c \
+	 init.c \
      is_sorted.c \
      ope_utils.c \
      utils.c \
@@ -55,6 +56,7 @@ PS_SRC=\
      quick_sort.c \
      quick_sort_utils.c \
 	 slide.c \
+	 init.c \
      insert_sort.c \
      small_sort.c \
 

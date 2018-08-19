@@ -6,13 +6,13 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 16:15:15 by abbenham          #+#    #+#             */
-/*   Updated: 2018/08/19 17:26:38 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/19 19:32:07 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
-# include "libft.h"
 # define PUSH_SWAP_H 
+# include "libft.h"
 # define END 11
 # define KNRM  "\x1B[0m"
 # define KRED  "\x1B[31m"
@@ -68,6 +68,8 @@ typedef struct	s_ope
 	void		(*func_ope)(t_heap*);
 	char		*name;
 }				t_ope;
+
+void	init_math(t_heap *heap);
 
 void	quick_sort(t_heap *heap, int turn);
 int		get_pivot(long *heap, int last);
