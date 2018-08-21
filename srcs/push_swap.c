@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 15:26:57 by abbenham          #+#    #+#             */
-/*   Updated: 2018/08/19 19:28:51 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/21 18:53:54 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,21 +72,6 @@ void		push_swap(t_heap *heap)
 		insert_sort(heap, &heap->b, &heap->a, heap->b.len);
 		slide(heap);
 	}
-}
-
-void		ft_quit(t_heap *heap)
-{
-	free(heap->a.push);
-	free(heap->b.push);
-	free(heap->a.rotate);
-	free(heap->b.rotate);
-	free(heap->a.reverse);
-	free(heap->b.reverse);
-	free(heap->a.swap);
-	free(heap->b.swap);
-	free(heap->a.pile);
-	free(heap->b.pile);
-	free(heap);
 }
 
 int			main(int ac, char **av)

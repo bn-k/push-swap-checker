@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 16:15:15 by abbenham          #+#    #+#             */
-/*   Updated: 2018/08/19 19:32:07 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/21 19:06:16 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,34 +33,34 @@ typedef struct	s_quick
 	int	new;
 }		t_quick;
 
-typedef struct	s_pile
+typedef struct		s_pile
 {
 	char			id;
-	long int			*pile;
-	int			len;
-	struct s_pile		*other;
+	long int		*pile;
+	int				len;
+	struct s_pile	*other;
 	char			*push;
 	char			*rotate;
 	char			*reverse;
 	char			*swap;
-	int			(*sort)(int, int);
-	int			(*oper)(int, int);
-	int			of;
-	int			position;
+	int				(*sort)(int, int);
+	int				(*oper)(int, int);
+	int				of;
+	int				position;
 	t_quick			quick;
-}		t_pile;
+}					t_pile;
 
 typedef struct	s_heap
 {
 	t_pile	a;
 	t_pile	b;
-	int	len;
-	int	min;
-	int	turn;
-	int	sorted;
-	int	*clean;
-	int	verb;
-}		t_heap;
+	int		len;
+	int		min;
+	int		turn;
+	int		sorted;
+	int		*clean;
+	int		verb;
+}			t_heap;
 
 typedef struct	s_ope
 {
@@ -70,6 +70,8 @@ typedef struct	s_ope
 }				t_ope;
 
 void	init_math(t_heap *heap);
+void	ft_quit(t_heap *heap);
+void		free_checker(char **prog);
 
 void	quick_sort(t_heap *heap, int turn);
 int		get_pivot(long *heap, int last);

@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 15:26:12 by abbenham          #+#    #+#             */
-/*   Updated: 2018/08/19 19:42:59 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/21 19:25:15 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,18 @@ char		**programme_read(void)
 {
 	char		*ope;
 	char		**prog;
+	char		**tmp;
 	int			i;
+	int			gnl;
 
 	prog = NULL;
 	i = 0;
 	while (1 == (gnl = get_next_line(0, &ope)))
 	{
-		if (!(prog = tabcat(prog, ope, ++i)))
+		tmp = prog;
+		if (!(prog = tabcat(tmp, ope, ++i)))
 			return (NULL);
+		free(tmp);
 	}
 	if (prog == NULL)
 		return (NULL);
@@ -81,6 +85,10 @@ int			main(int ac, char **av)
 		ft_printf("Checker: Error\n");
 		return (0);
 	}
+	if (heap->a.len == 1)
+	{
+		return (0);
+	}
 	init_math(heap);
 	prog = programme_read();
 	if (prog)
@@ -89,5 +97,7 @@ int			main(int ac, char **av)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
+	free_checker(prog);
+	ft_quit(heap);
 	return (0);
 }

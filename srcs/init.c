@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/19 19:16:21 by abbenham          #+#    #+#             */
-/*   Updated: 2018/08/19 19:40:49 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/21 19:05:41 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,35 @@ void	init_math(t_heap *heap)
 	heap->b.oper = lower;
 	heap->a.of = INT_MAX;
 	heap->b.of = INT_MIN;
+}
+
+void		ft_quit(t_heap *heap)
+{
+	free(heap->a.push);
+	free(heap->b.push);
+	free(heap->a.rotate);
+	free(heap->b.rotate);
+	free(heap->a.reverse);
+	free(heap->b.reverse);
+	free(heap->a.swap);
+	free(heap->b.swap);
+	free(heap->a.pile);
+	free(heap->b.pile);
+	free(heap);
+}
+
+void		free_checker(char **prog)
+{
+	int i;
+
+	i = 0;
+	if (prog)
+	{
+		while (prog[i] != NULL)
+		{
+			free(prog[i]);
+			i++;
+		}
+		free(prog);
+	}
 }

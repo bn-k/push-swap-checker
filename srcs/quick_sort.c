@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 15:27:01 by abbenham          #+#    #+#             */
-/*   Updated: 2018/08/19 19:37:10 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/21 18:57:35 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,6 @@ void	quick_sort(t_heap *heap, int turn)
 	heap->a.quick.i[0] = heap->len;
 	heap->turn = turn;
 	shift(heap, &heap->a);
+	free(heap->a.quick.i);
+	free(heap->b.quick.i);
 }
