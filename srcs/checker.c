@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 15:26:12 by abbenham          #+#    #+#             */
-/*   Updated: 2018/08/21 19:25:15 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/22 12:51:22 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,21 +77,17 @@ int			main(int ac, char **av)
 {
 	char	**prog;
 	t_heap	*heap;
-	int		i;
 
-	i = 0;
-	if (!(heap = parser(ac, av)))
+	heap = NULL;
+	if (!(heap = parser(ac, av)) || ac == 0)
 	{
-		ft_printf("Checker: Error\n");
+		ft_printf("usage: ./checker [arg]\n");
 		return (0);
 	}
 	if (heap->a.len == 1)
-	{
 		return (0);
-	}
 	init_math(heap);
-	prog = programme_read();
-	if (prog)
+	if ((prog = programme_read()))
 		execute_prog(prog, heap);
 	if (is_sorted(heap))
 		ft_printf("OK\n");

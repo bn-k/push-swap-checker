@@ -14,18 +14,16 @@ LOG_WHITE		= \033[1;37m
 .SILENT:
 
 # comp
-VIEW_STACK = view_stack
 CHECKER = checker
 PS = push_swap
 CC = clang
-LIBCC = make -C ../libft
+LIBCC = make -C libft
 CCFLAGS = -Wall -Wextra -Werror #-fsanitize=adress -g
 
 # dir
 D_SRC = srcs
-GO_SRC = gui
 D_INC = includes
-D_LIB = ../libft
+D_LIB = libft
 
 # flags
 F_LIB = -lft 
@@ -60,24 +58,18 @@ PS_SRC=\
      insert_sort.c \
      small_sort.c \
 
-VIEW_SRC=\
- 	view_stack.go \
-
 INC = $(addprefix -I,$(D_INC))
 LIB_INC = $(addprefix -I,$(addprefix $(D_LIB)/,$(D_INC)))
 CHECKER_SRCS = $(addprefix $(D_SRC)/,$(CHECKER_SRC))
 PS_SRCS= $(addprefix $(D_SRC)/,$(PS_SRC))
-VIEW_SRCS= $(addprefix $(GO_SRC)/,$(VIEW_SRC))
 
-# special chars
-all: libft $(CHECKER) $(PS) $(VIEW_STACK)
+all: $(CHECKER) $(PS)
 
-libft: 
-	$(MAKE) -C ../libft
+depend: 
+	make -C libft
 
-$(CHECKER): comp_checker
+$(CHECKER): depend comp_checker
 $(PS): comp_ps
-$(VIEW_STACK): comp_view_stack
 
 comp_checker: 
 	$(CC) -o $(CHECKER) $(CHECKER_SRCS) $(INC) $(LIB_INC) -L$(D_LIB) $(F_LIB)
@@ -85,13 +77,12 @@ comp_checker:
 comp_ps: 
 	$(CC) -o $(PS) $(PS_SRCS) $(INC) $(LIB_INC) -L$(D_LIB) $(F_LIB)
 
-comp_view_stack:
-	go build $(VIEW_SRCS)
-
 clean:
 	rm -Rf $(CHECKER) $(PS) $(VIEW_STACK)
+	make -C libft clean
 
 fclean: clean
 	rm -f $(NAME)
+	make -C libft fclean
 
 re: fclean all

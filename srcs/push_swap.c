@@ -6,24 +6,22 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 15:26:57 by abbenham          #+#    #+#             */
-/*   Updated: 2018/08/21 18:53:54 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/22 10:57:34 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			sorted(int *arr, int len)
+void		swap_quick_sort(int i, int j, long **arr)
 {
-	int	i;
+	int	temp;
 
-	i = 0;
-	while (i < len)
+	if (i < j)
 	{
-		if (arr[i] > arr[i + 1])
-			return (0);
-		i++;
+		temp = arr[0][i];
+		arr[0][i] = arr[0][j];
+		arr[0][j] = temp;
 	}
-	return (1);
 }
 
 void		basic_quick_sort(long *arr, int low, int high)
@@ -44,12 +42,7 @@ void		basic_quick_sort(long *arr, int low, int high)
 				i++;
 			while (arr[j] > arr[pivot] && j >= low)
 				j--;
-			if (i < j)
-			{
-				temp = arr[i];
-				arr[i] = arr[j];
-				arr[j] = temp;
-			}
+			swap_quick_sort(i, j, &arr);
 		}
 		temp = arr[j];
 		arr[j] = arr[pivot];
@@ -78,9 +71,7 @@ int			main(int ac, char **av)
 {
 	t_heap	*heap;
 
-	if (ac == 1)
-		return (0);
-	if (!(heap = parser(ac, av)))
+	if (!(heap = parser(ac, av)) || ac == 1)
 	{
 		ft_printf("usage: ./push_swap [arg]\n");
 		return (0);

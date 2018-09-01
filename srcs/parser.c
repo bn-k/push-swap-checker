@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 15:26:48 by abbenham          #+#    #+#             */
-/*   Updated: 2018/08/21 19:03:32 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/22 13:05:22 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,20 +69,20 @@ static t_heap	*parser_two_arg(int ac, char **av)
 	heap = (t_heap*)malloc(sizeof(t_heap));
 	if (-1 == (heap->len = string_checker(s)))
 		return (NULL);
-	if (!(heap->a.pile = (long*)malloc(sizeof(long) * (heap->len + 1))))
-		return (NULL);
-	if (!(heap->b.pile = (long*)malloc(sizeof(long) * heap->len)))
+	if (!(heap->a.pile = (long*)malloc(sizeof(long) * (heap->len + 1))) ||\
+			(!(heap->b.pile = (long*)malloc(sizeof(long) * heap->len))))
 		return (NULL);
 	while (i < heap->len)
 	{
 		heap->a.pile[i] = ft_atoi_long(s[i]);
-		free(s[i]);
-		i++;
+		free(s[i++]);
 	}
 	free(s);
-	i = 0;
 	if (-1 == (duplicate(heap)) || heap->len < 1)
+	{
+		ft_quit(heap);
 		return (NULL);
+	}
 	return (heap);
 }
 

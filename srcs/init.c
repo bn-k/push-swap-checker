@@ -6,13 +6,13 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/19 19:16:21 by abbenham          #+#    #+#             */
-/*   Updated: 2018/08/21 19:05:41 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/08/22 12:50:55 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	init_math(t_heap *heap)
+void		init_math(t_heap *heap)
 {
 	heap->turn = 3;
 	heap->a.len = heap->len;
